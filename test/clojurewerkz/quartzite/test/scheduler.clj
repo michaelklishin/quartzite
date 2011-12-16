@@ -2,7 +2,7 @@
   (:require [clojurewerkz.quartzite.scheduler :as qs])
   (:use [clojure.test]))
 
-(deftest test-starting-reactor
+(deftest test-scheduler-lifecycle-operations
   (is (not (qs/started?)))
   (is (qs/standby?))
   (qs/start)
