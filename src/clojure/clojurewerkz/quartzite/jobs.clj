@@ -8,7 +8,7 @@
 ;; Implementation
 ;;
 
-(def ^{ :dynamic true } *job*)
+;; ...
 
 
 
