@@ -1,7 +1,8 @@
 (ns clojurewerkz.quartzite.triggers
   (:refer-clojure :exclude [key])
   (:import [org.quartz Trigger TriggerBuilder TriggerKey]
-           [org.quartz.utils Key]))
+           [org.quartz.utils Key]
+           [java.util Date]))
 
 
 ;;
@@ -28,27 +29,41 @@
 
 (defn ^TriggerBuilder with-identity
   ([^TriggerBuilder tb s]
-     (.withIdentity tb (key s))
-     tb)
+     (.withIdentity tb (key s)))
   ([^TriggerBuilder tb s group]
-     (.withIdentity tb (key s group))
-     tb))
+     (.withIdentity tb (key s group))))
 
 (defn ^TriggerBuilder with-description
   [^TriggerBuilder tb ^String s]
-  (.withDescription tb s)
-  tb)
+  (.withDescription tb s))
 
 
 (defn ^TriggerBuilder with-priority
   [^TriggerBuilder tb ^long l]
-  (.withPriority tb l)
-  tb)
+  (.withPriority tb l))
 
 (defn ^TriggerBuilder modified-by-calendar
   [^TriggerBuilder tb ^String s]
-  (.modifiedByCalendar tb s)
-  tb)
+  (.modifiedByCalendar tb s))
+
+(defn ^TriggerBuilder start-now
+  [^TriggerBuilder tb]
+  (.startNow tb))
+
+
+;; multimethods make it possible to support date classes
+;; other than java.util.Date here. Seamless JodaTime integration is one
+;; of the goals of Quartzite.
+(defmulti  start-at (fn [builder date] (type date)))
+(defmethod start-at Date
+  [^TriggerBuilder builder ^Date start]
+  (.startAt builder start))
+
+(defmulti  end-at (fn [builder date] (type date)))
+(defmethod end-at Date
+  [^TriggerBuilder builder ^Date end]
+  (.endAt builder end))
+
 
 
 (defn ^Trigger finalize

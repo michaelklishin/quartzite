@@ -1,7 +1,9 @@
 (ns clojurewerkz.quartzite.test.triggers
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
-        [clojurewerkz.quartzite.triggers]))
+        [clojurewerkz.quartzite.triggers]
+        [clj-time.core :only [now minus plus days hours minutes]])
+  (:import [java.util Date Calendar]))
 
 
 (deftest test-instantiation-of-keys
@@ -27,6 +29,28 @@
 
 
 (deftest test-trigger-builder-dsl-example3
-  (let [trigger (build (with-identity "basic.trigger2")
+  (let [trigger (build (with-identity "basic.trigger3")
                        (modified-by-calendar "my.holidays.calendar"))]
     (is (= "my.holidays.calendar" (.getCalendarName trigger)))))
+
+
+(deftest test-trigger-builder-dsl-example4
+  (let [d       (Date.)
+        trigger (build (with-identity "basic.trigger4")
+                       (start-now))
+        st      (.getStartTime trigger)]
+    (is (= (.getYear d)    (.getYear st)))
+    (is (= (.getMonth d)   (.getMonth st)))
+    (is (= (.getDay d)     (.getDay st)))
+    (is (= (.getHours d)   (.getHours st)))
+    (is (= (.getMinutes d) (.getMinutes st)))))
+
+
+(deftest test-trigger-builder-dsl-example5
+  (let [start   (.toDate (now))
+        end     (-> (now) (plus (hours 3)) .toDate)
+        trigger (build (with-identity "basic.trigger5")
+                       (start-at start)
+                       (end-at   end))]
+    (is (= start (.getStartTime trigger)))
+    (is (= end   (.getEndTime trigger)))))

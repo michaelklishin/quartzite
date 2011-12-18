@@ -28,16 +28,13 @@
 
 (defn ^JobBuilder with-identity
   ([^JobBuilder jb s]
-     (.withIdentity jb (key s))
-     jb)
+     (.withIdentity jb (key s)))
   ([^JobBuilder jb s group]
-     (.withIdentity jb (key s group))
-     jb))
+     (.withIdentity jb (key s group))))
 
 (defn ^JobBuilder with-description
   [^JobBuilder jb ^String s]
-  (.withDescription jb s)
-  jb)
+  (.withDescription jb s))
 
 (defn ^JobBuilder store-durably
   [^JobBuilder jb]
@@ -58,8 +55,7 @@
 (defn ^JobBuilder execute
   [^JobBuilder jb f]
   (let [prx (job-for f)]
-    (.ofType jb (class prx))
-    jb))
+    (.ofType jb (class prx))))
 
 (defn ^JobDetail finalize
   [^JobBuilder jb]
