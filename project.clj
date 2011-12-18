@@ -8,8 +8,9 @@
                              :releases {:checksum :fail :update :always}
                              }
                  }  
-  :dependencies [[org.clojure/clojure "1.3.0"]
+  :dependencies [[org.clojure/clojure         "1.3.0"]
                  [org.quartz-scheduler/quartz "2.1.1"]]
+  :dev-dependencies [[clj-time                "0.3.3" :exclusions [org.clojure/clojure]]]
   :source-path        "src/clojure"
   :java-source-path   "src/java"
   :dev-resources-path "test/resources"
