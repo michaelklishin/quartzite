@@ -1,6 +1,6 @@
 (ns clojurewerkz.quartzite.jobs
   (:refer-clojure :exclude [key])
-  (:import [org.quartz Job JobDetail JobBuilder JobKey]
+  (:import [org.quartz Job JobDetail JobBuilder JobKey JobExecutionContext]
            [org.quartz.utils Key]))
 
 
@@ -26,7 +26,7 @@
 
 
 
-(defn with-identity
+(defn ^JobBuilder with-identity
   ([^JobBuilder jb s]
      (.withIdentity jb (key s))
      jb)
@@ -34,11 +34,32 @@
      (.withIdentity jb (key s group))
      jb))
 
-(defn with-description
+(defn ^JobBuilder with-description
   [^JobBuilder jb ^String s]
   (.withDescription jb s)
   jb)
 
+(defn ^JobBuilder store-durably
+  [^JobBuilder jb]
+  (.storeDurably jb))
+
+(defn ^JobBuilder request-recovery
+  [^JobBuilder jb]
+  (.requestRecovery jb))
+
+
+(defn job-for
+  [f]
+  (proxy [org.quartz.Job]
+      []
+    (execute [ctx]
+      (f ctx))))
+
+(defn ^JobBuilder execute
+  [^JobBuilder jb f]
+  (let [prx (job-for f)]
+    (.ofType jb (class prx))
+    jb))
 
 (defn ^JobDetail finalize
   [^JobBuilder jb]
