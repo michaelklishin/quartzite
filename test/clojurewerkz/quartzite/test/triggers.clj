@@ -3,7 +3,8 @@
   (:use [clojure.test]
         [clojurewerkz.quartzite.triggers]
         [clj-time.core :only [now minus plus days hours minutes]])
-  (:import [java.util Date Calendar]))
+  (:import [java.util Date]
+           [org.joda.time DateTime]))
 
 
 (deftest test-instantiation-of-keys
@@ -47,8 +48,8 @@
 
 
 (deftest test-trigger-builder-dsl-example5
-  (let [start   (.toDate (now))
-        end     (-> (now) (plus (hours 3)) .toDate)
+  (let [start   (.toDate ^DateTime (now))
+        end     (.toDate ^DateTime (plus (now) (hours 3)))
         trigger (build (with-identity "basic.trigger5")
                        (start-at start)
                        (end-at   end))]

@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.scheduler
-  (:import [org.quartz.Scheduler]))
+  (:import [org.quartz Scheduler]))
 
 ;;
 ;; Implementation
@@ -22,27 +22,27 @@
 
 (defn start
   []
-  (.start @*scheduler*))
+  (.start ^Scheduler @*scheduler*))
 
 (defn start-delayed
   [^long seconds]
-  (.startDelayed @*scheduler* seconds))
+  (.startDelayed ^Scheduler @*scheduler* seconds))
 
 (defn shutdown
   ([]
-     (.shutdown @*scheduler*))
+     (.shutdown ^Scheduler @*scheduler*))
   ([^Boolean wait-for-jobs-to-complete]
-     (.shutdown @*scheduler* wait-for-jobs-to-complete)))
+     (.shutdown ^Scheduler @*scheduler* wait-for-jobs-to-complete)))
 
 
 (defn started?
   []
-  (.isStarted @*scheduler*))
+  (.isStarted ^Scheduler @*scheduler*))
 
 (defn standby?
   []
-  (.isInStandbyMode @*scheduler*))
+  (.isInStandbyMode ^Scheduler @*scheduler*))
 
 (defn shutdown?
   []
-  (.isShutdown @*scheduler*))
+  (.isShutdown ^Scheduler @*scheduler*))
