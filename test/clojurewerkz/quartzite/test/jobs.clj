@@ -1,8 +1,13 @@
 (ns clojurewerkz.quartzite.test.jobs
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
-        [clojurewerkz.quartzite.jobs]))
+        [clojurewerkz.quartzite jobs conversion])
+  (:import [org.quartz JobDataMap]))
 
+
+;;
+;; Keys
+;;
 
 (deftest test-instantiation-of-keys
   (is (not (= (key) (key))))
@@ -12,6 +17,11 @@
   (is (= (key "key1" "group1") (key "key1" "group1")))
   (is (= (key "key1") (key "key1"))))
 
+
+
+;;
+;; Builder DSL
+;;
 
 (deftest test-job-builder-dsl-example1
   (let [job (build (with-identity    "basic.job1" "basic.group1")
@@ -38,3 +48,24 @@
                    (request-recovery))]
     (is (.requestsRecovery job))
     (is (.isDurable job))))
+
+
+;;
+;; Clojure <=> JobDataMap conversion
+;;
+
+(deftest test-conversion-of-clojure-maps-to-job-data-maps
+  (let [input  { :long 100 "string" "Hello, Quartz" :keyword :clojure }
+        output (to-job-data input)]
+    (is (instance? JobDataMap output))
+    (is (= :clojure        (.get output :keyword)))
+    (is (= "Hello, Quartz" (.get output "string")))
+    (is (= 100             (.get output :long)))))
+
+(deftest test-conversion-of-job-data-maps-to-clojure-maps
+  (let [input  (doto (JobDataMap. { :keyword :clojure "string" "Hello, Quartz" :long 100 }))
+        output (from-job-data input)]
+    (is (map? output))
+    (is (= :clojure        (.get output :keyword)))
+    (is (= "Hello, Quartz" (.get output "string")))
+    (is (= 100             (.get output :long)))))

@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [key])
   (:import [org.quartz Trigger TriggerBuilder TriggerKey]
            [org.quartz.utils Key]
-           [java.util Date]))
+           [java.util Date])
+  (:use    [clojurewerkz.quartzite.conversion :only [to-job-data]]))
 
 
 ;;
@@ -63,6 +64,18 @@
 (defmethod end-at Date
   [^TriggerBuilder builder ^Date end]
   (.endAt builder end))
+
+
+(defn for-job
+  ([^TriggerBuilder tb job]
+     (.forJob tb job))
+  ([^TriggerBuilder tb ^String job ^String group]
+     (.forJob tb job group)))
+
+
+(defn ^TriggerBuilder using-job-data
+  [^TriggerBuilder tb m]
+  (.usingJobData tb (to-job-data m)))
 
 
 

@@ -1,7 +1,8 @@
 (ns clojurewerkz.quartzite.jobs
   (:refer-clojure :exclude [key])
-  (:import [org.quartz Job JobDetail JobBuilder JobKey JobExecutionContext]
-           [org.quartz.utils Key]))
+  (:import [org.quartz Job JobDetail JobBuilder JobKey JobExecutionContext JobDataMap]
+           [org.quartz.utils Key]
+           [clojure.lang IPersistentMap]))
 
 
 ;;

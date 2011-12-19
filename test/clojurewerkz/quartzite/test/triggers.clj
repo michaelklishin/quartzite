@@ -1,8 +1,9 @@
 (ns clojurewerkz.quartzite.test.triggers
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
-        [clojurewerkz.quartzite.triggers]
+        [clojurewerkz.quartzite triggers conversion]
         [clj-time.core :only [now minus plus days hours minutes]])
+  (:require [clojurewerkz.quartzite.jobs :as jobs])
   (:import [java.util Date]
            [org.joda.time DateTime]))
 
@@ -55,3 +56,32 @@
                        (end-at   end))]
     (is (= start (.getStartTime trigger)))
     (is (= end   (.getEndTime trigger)))))
+
+
+(deftest test-trigger-builder-dsl-example6
+  (let [trigger (build (with-identity "basic.trigger6")
+                       (start-now)
+                       (for-job "some.job"))]
+    (is (= (jobs/key "some.job") (.getJobKey trigger)))))
+
+
+(deftest test-trigger-builder-dsl-example7
+  (let [trigger (build (with-identity "basic.trigger7")
+                       (start-now)
+                       (for-job (jobs/key "some.job")))]
+    (is (= (jobs/key "some.job") (.getJobKey trigger)))))
+
+
+(deftest test-trigger-builder-dsl-example8
+  (let [trigger (build (with-identity "basic.trigger8")
+                       (start-now)
+                       (for-job "collect.underpants" "business"))]
+    (is (= (jobs/key "collect.underpants" "business") (.getJobKey trigger)))))
+
+(deftest test-trigger-builder-dsl-example9
+  (let [trigger (build (with-identity "basic.trigger8")
+                       (start-now)
+                       (for-job "collect.underpants" "business")
+                       (using-job-data { :who "Gnomes" :what "Know about business" }))]
+    (is (= (to-job-data { :who "Gnomes" :what "Know about business" }) (.getJobDataMap trigger)))
+    (is (= { :who "Gnomes" :what "Know about business" } (from-job-data (.getJobDataMap trigger))))))
