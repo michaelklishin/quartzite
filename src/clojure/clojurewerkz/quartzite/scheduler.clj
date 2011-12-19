@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.scheduler
-  (:import [org.quartz Scheduler]))
+  (:import [org.quartz Scheduler JobDetail Trigger]))
 
 ;;
 ;; Implementation
@@ -34,6 +34,10 @@
   ([^Boolean wait-for-jobs-to-complete]
      (.shutdown ^Scheduler @*scheduler* wait-for-jobs-to-complete)))
 
+(defn recreate
+  []
+  (swap! *scheduler* (fn [_] (org.quartz.impl.StdSchedulerFactory/getDefaultScheduler))))
+
 
 (defn started?
   []
@@ -46,3 +50,8 @@
 (defn shutdown?
   []
   (.isShutdown ^Scheduler @*scheduler*))
+
+
+(defn schedule
+  [^JobDetail job-detail ^Trigger trigger]
+  (.scheduleJob ^Scheduler @*scheduler* job-detail trigger))

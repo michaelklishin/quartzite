@@ -45,18 +45,9 @@
   [^JobBuilder jb]
   (.requestRecovery jb))
 
-
-(defn job-for
-  [f]
-  (proxy [org.quartz.Job]
-      []
-    (execute [ctx]
-      (f ctx))))
-
-(defn ^JobBuilder execute
-  [^JobBuilder jb f]
-  (let [prx (job-for f)]
-    (.ofType jb (class prx))))
+(defn ^JobBuilder of-type
+  [^JobBuilder jb clazz]
+  (.ofType jb clazz))
 
 (defn ^JobDetail finalize
   [^JobBuilder jb]

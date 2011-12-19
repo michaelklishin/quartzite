@@ -23,6 +23,12 @@
 ;; Builder DSL
 ;;
 
+(defrecord AJob []
+  org.quartz.Job
+  (execute [this ctx]
+    ;; intentional no-op
+    ))
+
 (deftest test-job-builder-dsl-example1
   (let [job (build (with-identity    "basic.job1" "basic.group1")
                    (with-description "A description"))]
@@ -38,8 +44,7 @@
 (deftest test-job-builder-dsl-example3
   (let [job (build (with-identity    "basic.job3" "basic.group3")
                    (with-description "A description")
-                   (execute (fn []
-                              (println "Ran basic.job3"))))]
+                   (of-type clojurewerkz.quartzite.test.jobs.AJob))]
    (.getJobClass job)))
 
 (deftest test-job-builder-dsl-example4

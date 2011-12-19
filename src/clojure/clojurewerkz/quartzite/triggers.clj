@@ -1,6 +1,6 @@
 (ns clojurewerkz.quartzite.triggers
   (:refer-clojure :exclude [key])
-  (:import [org.quartz Trigger TriggerBuilder TriggerKey]
+  (:import [org.quartz Trigger TriggerBuilder TriggerKey ScheduleBuilder]
            [org.quartz.utils Key]
            [java.util Date])
   (:use    [clojurewerkz.quartzite.conversion :only [to-job-data]]))
@@ -46,6 +46,10 @@
 (defn ^TriggerBuilder modified-by-calendar
   [^TriggerBuilder tb ^String s]
   (.modifiedByCalendar tb s))
+
+(defn ^TriggerBuilder with-schedule
+  [^TriggerBuilder tb ^ScheduleBuilder sb]
+  (.withSchedule tb sb))
 
 (defn ^TriggerBuilder start-now
   [^TriggerBuilder tb]
