@@ -22,9 +22,9 @@ Once the library matures, we will update this document.
 
 ## Supported Features
 
- * Job builder DSL: yes
- * Trigger builder DSL: incomplete
- * Scheduling: not yet
+ * Job builder DSL: complete
+ * Trigger builder DSL: mostly complete
+ * Simple scheduling: complete
  * Calendar scheduling: not yet
  * Cron scheduling: not yet
  * Persisting job state to data stores: not yet
