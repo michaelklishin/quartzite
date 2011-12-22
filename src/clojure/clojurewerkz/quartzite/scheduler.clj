@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.scheduler
-  (:import [org.quartz Scheduler JobDetail Trigger]))
+  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey]))
 
 ;;
 ;; Implementation
@@ -55,3 +55,11 @@
 (defn schedule
   [^JobDetail job-detail ^Trigger trigger]
   (.scheduleJob ^Scheduler @*scheduler* job-detail trigger))
+
+(defn unschedule
+  [^TriggerKey tk]
+  (.unscheduleJob ^Scheduler @*scheduler* tk))
+
+(defn trigger
+  [^JobKey jk]
+  (.triggerJob ^Scheduler @*scheduler* jk))

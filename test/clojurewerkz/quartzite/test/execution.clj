@@ -4,29 +4,100 @@
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.simple :as s])
-  (:import [java.util.concurrent CountDownLatch]))
-
-(def latch (CountDownLatch. 10))
-
-(defrecord AJob []
-  org.quartz.Job
-  (execute [this ctx]
-    (println "Executing AJob")
-    (.countDown latch)))
+  (:import [java.util.concurrent CountDownLatch]
+           [org.quartz ]))
 
 
 (sched/start)
 
 
-(deftest test-basic-periodic-execution
+;;
+;; Case 1
+;;
+
+(def latch1 (CountDownLatch. 10))
+
+(defrecord JobA []
+  org.quartz.Job
+  (execute [this ctx]
+    (println "Executing job A")
+    (.countDown latch1)))
+
+
+
+(deftest test-basic-periodic-execution-with-a-job-defined-using-defrecord
   (is (sched/started?))
   (let [job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.AJob)
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobA)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job1" "tests"))
         trigger  (t/build
                   (t/start-now)
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 200))))]
-    (sched/schedule job trigger)    
-    (.await latch)))
+    (sched/schedule job trigger)
+    (.await latch1)))
+
+
+
+;;
+;; Case 2
+;;
+
+(def counter2 (atom 0))
+
+(defrecord JobB []
+  org.quartz.Job
+  (execute [this ctx]
+    (println "Executing job B")
+    (swap! counter2 inc)))
+
+(deftest test-unscheduling-of-a-job-defined-using-defrecord
+  (is (sched/started?))
+  (let [k       (t/key "clojurewerkz.quartzite.test.execution.trigger2" "tests")
+        job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobB)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job2" "tests"))
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger2" "tests")
+                  (t/with-schedule (s/schedule
+                                    (s/with-repeat-count 10)
+                                    (s/with-interval-in-milliseconds 400))))]
+    (sched/schedule job trigger)
+    (Thread/sleep 2000)
+    (sched/unschedule k)
+    (Thread/sleep 2000)
+    (is (< @counter2 7))))
+
+
+
+;;
+;; Case 3
+;;
+
+(def counter3 (atom 0))
+
+(defrecord JobC []
+  org.quartz.Job
+  (execute [this ctx]
+    (println "Executing job C")
+    (swap! counter3 inc)))
+
+(deftest test-manual-triggering-of-a-job-defined-using-defrecord
+  (is (sched/started?))
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job3" "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger3" "tests")
+        job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobC)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job3" "tests"))
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger3" "tests")
+                  (t/with-schedule (s/schedule
+                                    (s/with-repeat-count 10)
+                                    (s/with-interval-in-seconds 2))))]
+    (sched/schedule job trigger)
+    (sched/trigger jk)
+    (Thread/sleep 500)
+    (is (= 2 @counter3))))
