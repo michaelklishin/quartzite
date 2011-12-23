@@ -54,6 +54,18 @@
     (is (.requestsRecovery job))
     (is (.isDurable job))))
 
+(deftest test-job-builder-dsl-example5
+  (let [jk  (key "basic.job5" "basic.group5")
+        job (build (with-identity jk)
+                   (store-durably))]
+    (is (= jk (.getKey job)))))
+
+(deftest test-job-builder-dsl-example6
+  (let [jk  (key "basic.job6")
+        job (build (with-identity jk)
+                   (store-durably))]
+    (is (= jk (.getKey job)))))
+
 
 ;;
 ;; Clojure <=> JobDataMap conversion

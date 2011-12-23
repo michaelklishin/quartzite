@@ -30,7 +30,9 @@
 
 (defn ^JobBuilder with-identity
   ([^JobBuilder jb s]
-     (.withIdentity jb (key s)))
+     (if (instance? JobKey s)
+       (.withIdentity jb ^JobKey s)
+       (.withIdentity jb ^String (key s))))
   ([^JobBuilder jb s group]
      (.withIdentity jb (key s group))))
 
