@@ -1,5 +1,6 @@
 (ns clojurewerkz.quartzite.test.execution
-  (:use [clojure.test])
+  (:use [clojure.test]
+        [clojurewerkz.quartzite.conversion])
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
@@ -20,8 +21,7 @@
 (defrecord JobA []
   org.quartz.Job
   (execute [this ctx]
-    (println "Executing job A")
-    (.countDown latch1)))
+    (.countDown ^CountDownLatch latch1)))
 
 
 
@@ -36,7 +36,7 @@
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 200))))]
     (sched/schedule job trigger)
-    (.await latch1)))
+    (.await ^CountDownLatch latch1)))
 
 
 
@@ -49,7 +49,6 @@
 (defrecord JobB []
   org.quartz.Job
   (execute [this ctx]
-    (println "Executing job B")
     (swap! counter2 inc)))
 
 (deftest test-unscheduling-of-a-job-defined-using-defrecord
@@ -81,7 +80,6 @@
 (defrecord JobC []
   org.quartz.Job
   (execute [this ctx]
-    (println "Executing job C")
     (swap! counter3 inc)))
 
 (deftest test-manual-triggering-of-a-job-defined-using-defrecord
@@ -101,3 +99,37 @@
     (sched/trigger jk)
     (Thread/sleep 500)
     (is (= 2 @counter3))))
+
+
+;;
+;; Case 4
+;;
+
+(def value4 (atom nil))
+
+(defrecord JobD []
+  org.quartz.Job
+  (execute [this ctx]
+    (swap! value4 (fn [_]
+                    (from-job-data (.getMergedJobDataMap ctx))))))
+
+(deftest test-job-data-access
+  (is (sched/started?))
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job4" "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+        job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobD)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job4" "tests")
+                 (j/using-job-data { "job-key" "job-value" })
+                 )
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+                  (t/using-job-data { "trigger-key" "trigger value" })
+                  (t/with-schedule (s/schedule
+                                    (s/with-repeat-count 10)
+                                    (s/with-interval-in-seconds 2))))]
+    (sched/schedule job trigger)
+    (sched/trigger jk)
+    (Thread/sleep 500)
+    (is (= { "job-key" "job-value" "trigger-key" "trigger value" } @value4))))

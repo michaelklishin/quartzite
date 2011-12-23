@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [key])
   (:import [org.quartz JobDataMap]
            [org.quartz.utils Key]
-           [clojure.lang IPersistentMap]))
+           [clojure.lang IPersistentMap]
+           [org.quartz.impl JobDetailImpl]))
 
 
 ;;

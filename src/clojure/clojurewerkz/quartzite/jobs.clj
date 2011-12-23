@@ -2,7 +2,8 @@
   (:refer-clojure :exclude [key])
   (:import [org.quartz Job JobDetail JobBuilder JobKey JobExecutionContext JobDataMap]
            [org.quartz.utils Key]
-           [clojure.lang IPersistentMap]))
+           [clojure.lang IPersistentMap])
+  (:use    [clojurewerkz.quartzite.conversion :only [to-job-data]]))
 
 
 ;;
@@ -48,6 +49,10 @@
 (defn ^JobBuilder of-type
   [^JobBuilder jb clazz]
   (.ofType jb clazz))
+
+(defn ^JobBuilder using-job-data
+  [^JobBuilder tb m]
+  (.usingJobData tb (to-job-data m)))
 
 (defn ^JobDetail finalize
   [^JobBuilder jb]
