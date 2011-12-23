@@ -32,7 +32,7 @@
   ([^JobBuilder jb s]
      (if (instance? JobKey s)
        (.withIdentity jb ^JobKey s)
-       (.withIdentity jb ^String (key s))))
+       (.withIdentity jb (key s))))
   ([^JobBuilder jb s group]
      (.withIdentity jb (key s group))))
 

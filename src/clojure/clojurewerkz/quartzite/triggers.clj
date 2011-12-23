@@ -30,7 +30,9 @@
 
 (defn ^TriggerBuilder with-identity
   ([^TriggerBuilder tb s]
-     (.withIdentity tb (key s)))
+     (if (instance? TriggerKey s)
+       (.withIdentity tb ^TriggerKey s)
+       (.withIdentity tb (key s))))
   ([^TriggerBuilder tb s group]
      (.withIdentity tb (key s group))))
 

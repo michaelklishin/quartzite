@@ -85,3 +85,13 @@
                        (using-job-data { :who "Gnomes" :what "Know about business" }))]
     (is (= (to-job-data { :who "Gnomes" :what "Know about business" }) (.getJobDataMap trigger)))
     (is (= { :who "Gnomes" :what "Know about business" } (from-job-data (.getJobDataMap trigger))))))
+
+(deftest test-job-builder-dsl-example10
+  (let [tk  (key "basic.trigger10" "basic.group10")
+        trigger (build (with-identity tk))]
+    (is (= tk (.getKey trigger)))))
+
+(deftest test-job-builder-dsl-example11
+  (let [tk  (key "basic.trigger11")
+        trigger (build (with-identity tk))]
+    (is (= tk (.getKey trigger)))))
