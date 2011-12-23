@@ -10,8 +10,8 @@
                  }  
   :dependencies [[org.clojure/clojure         "1.3.0"]
                  [org.quartz-scheduler/quartz "2.1.2"]]
-  :dev-dependencies [[clj-time                  "0.3.3"  :exclusions [org.clojure/clojure]]
-                     [org.clojure/tools.logging "0.2.3"] :exclusions [org.clojure/clojure]
+  :dev-dependencies [[clj-time                  "0.3.3" :exclusions [org.clojure/clojure]]
+                     [org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
                      [org.slf4j/slf4j-simple    "1.6.2"]
                      [org.slf4j/slf4j-api       "1.6.2"]
                      [log4j                     "1.2.16" :exclusions [javax.mail/mail
