@@ -9,7 +9,7 @@
                              }
                  }  
   :dependencies [[org.clojure/clojure         "1.3.0"]
-                 [org.quartz-scheduler/quartz "2.1.1"]]
+                 [org.quartz-scheduler/quartz "2.1.2"]]
   :dev-dependencies [[clj-time                  "0.3.3"  :exclusions [org.clojure/clojure]]
                      [org.clojure/tools.logging "0.2.3"]
                      [org.slf4j/slf4j-simple    "1.6.2"]
