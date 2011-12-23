@@ -124,11 +124,10 @@
         trigger  (t/build
                   (t/start-now)
                   (t/with-identity "clojurewerkz.quartzite.test.execution.trigger4" "tests")
-                  (t/using-job-data { "trigger-key" "trigger value" })
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-seconds 2))))]
     (sched/schedule job trigger)
     (sched/trigger jk)
-    (Thread/sleep 500)
-    (is (= { "job-key" "job-value" "trigger-key" "trigger value" } @value4))))
+    (Thread/sleep 1000)
+    (is (= "job-value" (get @value4 "job-key")))))
