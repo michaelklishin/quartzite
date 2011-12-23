@@ -120,8 +120,7 @@
         job     (j/build
                  (j/of-type clojurewerkz.quartzite.test.execution.JobD)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job4" "tests")
-                 (j/using-job-data { "job-key" "job-value" })
-                 )
+                 (j/using-job-data { "job-key" "job-value" }))
         trigger  (t/build
                   (t/start-now)
                   (t/with-identity "clojurewerkz.quartzite.test.execution.trigger4" "tests")
