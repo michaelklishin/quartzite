@@ -25,11 +25,11 @@ Once the library matures, we will update this document.
  * Job builder DSL: complete
  * Trigger builder DSL: mostly complete
  * Simple scheduling: complete
+ * Cron scheduling: mostly complete
  * Calendar scheduling: not yet
- * Cron scheduling: not yet
- * Persisting job state to data stores: not yet
+ * Persistent and/or custom Job Store support: no additions necessary thanks to Quartz
  * Listeners: not yet
- * Custom configuration: not yet
+ * Custom configuration: no additions necessary thanks to Quartz
 
 
 
