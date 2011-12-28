@@ -57,3 +57,12 @@
                  (finalize))]
     (is (= (* i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval trigger)))
     (is (= (SimpleTrigger/REPEAT_INDEFINITELY) (.getRepeatCount trigger)))))
+
+
+(deftest test-simple-schedule-dsl-example6
+  (let [i       3
+        trigger (schedule
+                 (with-interval-in-days i)
+                 (repeat-forever)
+                 (finalize))]
+    (is (= (* 24 i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval trigger)))))

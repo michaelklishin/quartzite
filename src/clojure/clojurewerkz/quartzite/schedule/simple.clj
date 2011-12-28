@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.schedule.simple
-  (:import [org.quartz SimpleScheduleBuilder]))
+  (:import [org.quartz SimpleScheduleBuilder DateBuilder]))
 
 (defn with-interval-in-milliseconds
   [^SimpleScheduleBuilder ssb ^long milliseconds]
@@ -16,6 +16,10 @@
 (defn with-interval-in-hours
   [^SimpleScheduleBuilder ssb ^long hours]
   (.withIntervalInHours ssb hours))
+
+(defn with-interval-in-days
+  [^SimpleScheduleBuilder ssb ^long days]
+  (.withIntervalInHours ssb (* 24 days)))
 
 
 (defn with-repeat-count
