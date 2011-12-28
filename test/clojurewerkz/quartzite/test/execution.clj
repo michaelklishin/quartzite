@@ -5,8 +5,7 @@
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.simple :as s])
-  (:import [java.util.concurrent CountDownLatch]
-           [org.quartz ]))
+  (:import [java.util.concurrent CountDownLatch]))
 
 
 (sched/start)
@@ -53,7 +52,8 @@
 
 (deftest test-unscheduling-of-a-job-defined-using-defrecord
   (is (sched/started?))
-  (let [k       (t/key "clojurewerkz.quartzite.test.execution.trigger2" "tests")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job2"     "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger2" "tests")
         job     (j/build
                  (j/of-type clojurewerkz.quartzite.test.execution.JobB)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job2" "tests"))
@@ -64,8 +64,12 @@
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 400))))]
     (sched/schedule job trigger)
+    (is (sched/scheduled? jk))
+    (is (sched/scheduled? tk))
     (Thread/sleep 2000)
-    (sched/unschedule k)
+    (sched/unschedule tk)
+    (is (not (sched/scheduled? jk)))
+    (is (not (sched/scheduled? tk)))
     (Thread/sleep 2000)
     (is (< @counter2 7))))
 

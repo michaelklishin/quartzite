@@ -60,6 +60,21 @@
   [^TriggerKey tk]
   (.unscheduleJob ^Scheduler @*scheduler* tk))
 
+(defprotocol KeyBasedSchedulingPredicates
+  (^Boolean scheduled? [key] "Checks if entity with given key already exists within the scheduler"))
+
+(extend-protocol KeyBasedSchedulingPredicates
+  JobKey
+  (scheduled? [^JobKey key]
+    (.checkExists ^Scheduler @*scheduler* key))
+
+  TriggerKey
+  (scheduled? [^TriggerKey key]
+    (.checkExists ^Scheduler @*scheduler* key)))
+
+
+
+
 (defn trigger
   [^JobKey jk]
   (.triggerJob ^Scheduler @*scheduler* jk))
