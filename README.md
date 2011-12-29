@@ -1,11 +1,11 @@
-# Quarzite, a thin Clojure library on top the Quartz Scheduler
+# Quarzite, a thin Clojure layer on top the Quartz Scheduler
 
-Quarzite is a thin idiomatic Clojure library on top the Quartz Scheduler.
+Quarzite is a thin idiomatic Clojure layer on top the [Quartz Scheduler](http://quartz-scheduler.org/).
 
 
 ## Usage
 
-Quartzite is a *very* young project and until 1.0 is released and documentation guides are written,
+Quartzite is a young project and until 1.0 is released and documentation guides are written,
 it may be challenging to use for anyone except the author. For code examples, see our test
 suite.
 
@@ -16,7 +16,7 @@ Once the library matures, we will update this document.
 
  * Support all commonly used Quartz features but follow the 80/20 rule
  * Be (reasonably) idiomatic but easy to understand for people familiar with Quartz
- * Integrate with JodaTime and possibly other things, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
+ * Integrate with libraries like JodaTime where appropriate, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
  * Not a half-assed effort: libraries should be well maintained and test-driven or not be open sourced in the first place
 
 
