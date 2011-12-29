@@ -10,9 +10,9 @@
 
 
 (deftest test-cron-schedule-dsl-example1
-  (let [s     "0 0 3 15 * ?"
-        ^DateTime d1     (date-time 2012 2 15 3)
-        ^DateTime d2     (date-time 2012 2 16 3)
+  (let [s     "0 0 12 15 * ?"
+        ^DateTime d1     (date-time 2012 2 15 12)
+        ^DateTime d2     (date-time 2012 2 16 12)
         ^TimeZone tz     (TimeZone/getTimeZone "Europe/Moscow")
         ^CronTriggerImpl sched  (schedule
                                   (cron-schedule s)
