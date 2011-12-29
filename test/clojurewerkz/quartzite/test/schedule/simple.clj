@@ -11,6 +11,7 @@
         sched (schedule
                 (with-interval-in-seconds i)
                 (with-repeat-count        n)
+                (with-misfire-handling-instruction-ignore-misfires)
                 (finalize))]
     (is (= (* 1000 i) (.getRepeatInterval sched)))
     (is (= n          (.getRepeatCount    sched)))))
@@ -22,6 +23,7 @@
         sched (schedule
                 (with-interval-in-milliseconds i)
                 (with-repeat-count        n)
+                (ignore-misfires)
                 (finalize))]
     (is (= i (.getRepeatInterval sched)))
     (is (= n (.getRepeatCount    sched)))))
@@ -33,6 +35,7 @@
         sched (schedule
                 (with-interval-in-minutes i)
                 (with-repeat-count        n)
+                (next-with-remaining-count)
                 (finalize))]
     (is (= (* i (DateBuilder/MILLISECONDS_IN_MINUTE)) (.getRepeatInterval sched)))
     (is (= n (.getRepeatCount    sched)))))
@@ -44,6 +47,7 @@
         sched (schedule
                 (with-interval-in-hours i)
                 (with-repeat-count      n)
+                (now-with-remaining-count)
                 (finalize))]
     (is (= (* i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval sched)))
     (is (= n (.getRepeatCount    sched)))))
@@ -54,6 +58,7 @@
         sched (schedule
                 (with-interval-in-hours i)
                 (repeat-forever)
+                (now-with-existing-count)
                 (finalize))]
     (is (= (* i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval sched)))
     (is (= (SimpleTrigger/REPEAT_INDEFINITELY) (.getRepeatCount sched)))))
@@ -63,6 +68,7 @@
   (let [i       3
         sched (schedule
                 (with-interval-in-days i)
+                (next-with-existing-count)
                 (repeat-forever)
                 (finalize))]
     (is (= (* 24 i (DateBuilder/MILLISECONDS_IN_HOUR)) (.getRepeatInterval sched)))))

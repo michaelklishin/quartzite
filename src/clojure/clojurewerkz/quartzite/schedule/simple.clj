@@ -32,6 +32,54 @@
 
 
 
+(defn with-misfire-handling-instruction-ignore-misfires
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionIgnoreMisfires ssb))
+
+(defn ignore-misfires
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionIgnoreMisfires ssb))
+
+(defn with-misfire-handling-instruction-fire-now
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionFireNow ssb))
+
+
+(defn with-misfire-handling-instruction-next-with-existing-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNextWithExistingCount ssb))
+
+(defn next-with-existing-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNextWithExistingCount ssb))
+
+
+(defn with-misfire-handling-instruction-next-with-remaining-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNextWithRemainingCount ssb))
+
+(defn next-with-remaining-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNextWithRemainingCount ssb))
+
+
+(defn with-misfire-handling-instruction-now-with-existing-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNowWithExistingCount ssb))
+
+(defn now-with-existing-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNowWithExistingCount ssb))
+
+
+(defn with-misfire-handling-instruction-now-with-remaining-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNowWithRemainingCount ssb))
+
+(defn now-with-remaining-count
+  [^SimpleScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionNowWithRemainingCount ssb))
+
 
 
 (defn finalize
