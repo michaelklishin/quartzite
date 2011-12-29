@@ -17,6 +17,7 @@
         ^CronTriggerImpl sched  (schedule
                                   (cron-schedule s)
                                   (in-time-zone tz)
+                                  (with-misfire-handling-instruction-ignore-misfires)
                                   (finalize))]
     (is (= s (.getCronExpression sched)))
     (is (.willFireOn sched (.toCalendar d1 nil) true))
@@ -28,6 +29,7 @@
         ^DateTime d2     (date-time 2012 2 16 15)
         ^CronTriggerImpl sched (schedule
                                  (daily-at-hour-and-minute 15 0)
+                                 (ignore-misfires)
                                  (finalize))]
     (is (= "0 0 15 ? * *" (.getCronExpression sched)))
     (is (.willFireOn sched (.toCalendar d1 nil) true))
@@ -40,6 +42,7 @@
         ^DateTime d3     (date-time 2012 1  12  15)
         ^CronTriggerImpl sched (schedule
                                  (weekly-on-day-and-hour-and-minute DateBuilder/THURSDAY 15 0)
+                                 (with-misfire-handling-instruction-do-nothing)
                                  (finalize))]
     (is (= "0 0 15 ? * 5" (.getCronExpression sched)))
     (is (.willFireOn sched (.toCalendar d1 nil) true))
@@ -52,6 +55,7 @@
         ^DateTime d2     (date-time 2012 1  3  15)
         ^CronTriggerImpl sched (schedule
                                  (monthly-on-day-and-hour-and-minute 7 15 0)
+                                 (with-misfire-handling-instruction-fire-and-proceed)
                                  (finalize))]
     (is (= "0 0 15 7 * ?" (.getCronExpression sched)))
     (is (.willFireOn sched (.toCalendar d1 nil) true))

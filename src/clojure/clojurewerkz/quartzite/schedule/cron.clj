@@ -26,6 +26,27 @@
   (.inTimeZone ssb tz))
 
 
+(defn with-misfire-handling-instruction-ignore-misfires
+  [^CronScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionIgnoreMisfires ssb))
+
+(defn ignore-misfires
+  [^CronScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionIgnoreMisfires ssb))
+
+(defn with-misfire-handling-instruction-do-nothing
+  [^CronScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionDoNothing ssb))
+
+(defn with-misfire-handling-instruction-fire-and-proceed
+  [^CronScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionFireAndProceed ssb))
+
+(defn fire-and-proceed
+  [^CronScheduleBuilder ssb]
+  (.withMisfireHandlingInstructionFireAndProceed ssb))
+
+
 (defn finalize
   [^CronScheduleBuilder ssb]
   (.build ssb))
