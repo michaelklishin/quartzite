@@ -1,6 +1,7 @@
 (ns clojurewerkz.quartzite.schedule.cron
   (:import [org.quartz CronScheduleBuilder]
-           [org.quartz.spi MutableTrigger]))
+           [org.quartz.spi MutableTrigger]
+           [java.util TimeZone]))
 
 
 (defn cron-schedule
@@ -18,6 +19,11 @@
 (defn monthly-on-day-and-hour-and-minute
   [^long day-of-month ^long hour ^long minute]
   (CronScheduleBuilder/monthlyOnDayAndHourAndMinute day-of-month hour minute))
+
+
+(defn in-time-zone
+  [^CronScheduleBuilder ssb ^TimeZone tz]
+  (.inTimeZone ssb tz))
 
 
 (defn finalize

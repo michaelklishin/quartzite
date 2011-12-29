@@ -5,15 +5,18 @@
         [clj-time.core :only [date-time]])
   (:import [org.quartz CronScheduleBuilder DateBuilder]
            [org.quartz.impl.triggers CronTriggerImpl]
-           [org.joda.time DateTime]))
+           [org.joda.time DateTime]
+           [java.util TimeZone]))
 
 
 (deftest test-cron-schedule-dsl-example1
   (let [s     "0 0 3 15 * ?"
         ^DateTime d1     (date-time 2012 2 15 3)
         ^DateTime d2     (date-time 2012 2 16 3)
+        ^TimeZone tz     (TimeZone/getTimeZone "Europe/Moscow")
         ^CronTriggerImpl sched  (schedule
                                   (cron-schedule s)
+                                  (in-time-zone tz)
                                   (finalize))]
     (is (= s (.getCronExpression sched)))
     (is (.willFireOn sched (.toCalendar d1 nil) true))
