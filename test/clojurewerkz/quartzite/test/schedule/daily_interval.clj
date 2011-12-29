@@ -2,14 +2,15 @@
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
         [clojurewerkz.quartzite.schedule daily-interval])
-  (:import [org.quartz DateBuilder DateBuilder$IntervalUnit SimpleTrigger Trigger]
+  (:import [org.quartz DateBuilder DateBuilder$IntervalUnit SimpleTrigger]
+           [org.quartz.impl.triggers DailyTimeIntervalTriggerImpl]
            [java.util TreeSet]))
 
 
 (deftest test-daily-interval-schedule-dsl-example1
   (let [i     2
         n     10
-        sched (schedule
+        ^DailyTimeIntervalTriggerImpl sched (schedule
                 (with-interval-in-seconds i)
                 (with-repeat-count        n)
                 (on-days-of-the-week (TreeSet. [(Integer/valueOf 1) (Integer/valueOf 2) (Integer/valueOf 3) (Integer/valueOf 4)]))
@@ -23,7 +24,7 @@
 (deftest test-daily-interval-schedule-dsl-example2
   (let [i     5
         n     10
-        sched (schedule
+        ^DailyTimeIntervalTriggerImpl sched (schedule
                 (with-interval-in-seconds i)
                 (with-repeat-count        n)
                 (monday-through-friday)
@@ -39,7 +40,7 @@
 (deftest test-daily-interval-schedule-dsl-example3
   (let [i     3
         n     10
-        sched (schedule
+        ^DailyTimeIntervalTriggerImpl sched (schedule
                 (with-interval-in-minutes i)
                 (with-repeat-count        n)
                 (saturday-and-sunday)
@@ -53,7 +54,7 @@
 (deftest test-daily-interval-schedule-dsl-example4
   (let [i     333
         n     10
-        sched (schedule
+        ^DailyTimeIntervalTriggerImpl sched (schedule
                 (with-interval-in-hours i)
                 (with-repeat-count      n)
                 (every-day)
@@ -65,7 +66,7 @@
 
 (deftest test-daily-interval-schedule-dsl-example5
   (let [i       4
-        sched (schedule
+        ^DailyTimeIntervalTriggerImpl sched (schedule
                 (with-interval-in-hours i)
                 (on-saturday-and-sunday)
                 (finalize))]
@@ -75,7 +76,7 @@
 
 (deftest test-daily-interval-schedule-dsl-example6
   (let [i       3
-        sched (schedule
+        ^DailyTimeIntervalTriggerImpl sched (schedule
                 (with-interval-in-days i)
                 (on-monday-through-friday)
                 (finalize))]

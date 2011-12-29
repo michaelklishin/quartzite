@@ -27,7 +27,7 @@ Once the library matures, we will update this document.
  * Simple (periodic) scheduling: complete
  * Cron scheduling: complete
  * Daily time interval scheduling: complete
- * Calendar scheduling: not yet
+ * Calendar interval scheduling: complete
  * Persistent and/or custom Job Store support: no additions necessary thanks to Quartz
  * Listeners: not yet
  * Custom configuration: no additions necessary thanks to Quartz
