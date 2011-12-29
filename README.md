@@ -26,8 +26,8 @@ Once the library matures, we will update this document.
  * Trigger builder DSL: complete
  * Simple (periodic) scheduling: complete
  * Cron scheduling: complete
+ * Daily time interval scheduling: complete
  * Calendar scheduling: not yet
- * Daily time interval scheduling: not yet
  * Persistent and/or custom Job Store support: no additions necessary thanks to Quartz
  * Listeners: not yet
  * Custom configuration: no additions necessary thanks to Quartz
