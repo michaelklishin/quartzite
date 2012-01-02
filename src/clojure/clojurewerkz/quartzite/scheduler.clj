@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.scheduler
-  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey]))
+  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager]))
 
 ;;
 ;; Implementation
@@ -27,6 +27,10 @@
 (defn start-delayed
   [^long seconds]
   (.startDelayed ^Scheduler @*scheduler* seconds))
+
+(defn standby
+  []
+  (.standby ^Scheduler @*scheduler*))
 
 (defn shutdown
   ([]
@@ -78,3 +82,13 @@
 (defn trigger
   [^JobKey jk]
   (.triggerJob ^Scheduler @*scheduler* jk))
+
+
+(defn clear!
+  []
+  (.clear ^Scheduler @*scheduler*))
+
+
+(defn add-scheduler-listener
+  [^SchedulerListener listener]
+  (.addSchedulerListener ^ListenerManager (.getListenerManager ^Scheduler @*scheduler*) listener))
