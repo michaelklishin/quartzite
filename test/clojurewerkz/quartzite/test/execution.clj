@@ -67,7 +67,7 @@
     (is (sched/scheduled? jk))
     (is (sched/scheduled? tk))
     (Thread/sleep 2000)
-    (sched/unschedule tk)
+    (sched/unschedule-job tk)
     (is (not (sched/scheduled? jk)))
     (is (not (sched/scheduled? tk)))
     (Thread/sleep 2000)
@@ -150,21 +150,28 @@
 
 (deftest test-job-data-access
   (is (sched/started?))
-  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job4" "tests")
-        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job5" "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger5" "tests")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobD)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job4" "tests")
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobE)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job5" "tests")
                  (j/using-job-data { "job-key" "job-value" }))
         trigger  (t/build
                   (t/start-now)
-                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger5" "tests")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
-                                    (s/with-interval-in-seconds 2))))]
+                                    (s/with-interval-in-seconds 1))))]
     (sched/schedule job trigger)
-    (sched/unschedule tk)
+    (sched/unschedule-job tk)
     (sched/schedule job trigger)
-    (sched/unschedule [tk])
+    (sched/unschedule-jobs [tk])
+    (sched/schedule job trigger)
+    (sched/delete-job jk)
+    (sched/schedule job trigger)
+    (sched/delete-jobs [jk])
     (Thread/sleep 3000)
-    (is (= 0 @counter5))))
+    ;; with start-now policty one execution
+    ;; manages to get through. In part this test is supposed
+    ;; to demonstrate it as much as test unscheduling functions. MK.
+    (is (< @counter5 2))))

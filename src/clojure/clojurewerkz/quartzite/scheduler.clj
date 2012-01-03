@@ -61,19 +61,22 @@
   [^JobDetail job-detail ^Trigger trigger]
   (.scheduleJob ^Scheduler @*scheduler* job-detail trigger))
 
-(defprotocol Unscheduling
-  (^Boolean unschedule [key] "Remove the indicated trigger from the scheduler"))
+(defn unschedule-job
+  [^TriggerKey key]
+  (.unscheduleJob ^Scheduler @*scheduler* key))
 
-(extend-protocol Unscheduling
-  TriggerKey
-  (unschedule
-    [^TriggerKey key]
-    (.unscheduleJob ^Scheduler @*scheduler* key))
+(defn delete-job
+  [^JobKey key]
+  (.deleteJob ^Scheduler @*scheduler* key))
 
-  List
-  (unschedule
-    [^List key]
-    (.unscheduleJobs ^Scheduler @*scheduler* key)))
+(defn unschedule-jobs
+  [^List keys]
+  (.unscheduleJobs ^Scheduler @*scheduler* keys))
+
+(defn delete-jobs
+  [^List keys]
+  (.deleteJobs ^Scheduler @*scheduler* keys))
+
 
 
 (defprotocol KeyBasedSchedulingPredicates
