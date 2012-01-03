@@ -1,5 +1,6 @@
 (ns clojurewerkz.quartzite.scheduler
-  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager]))
+  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager]
+           [java.util List]))
 
 ;;
 ;; Implementation
@@ -60,9 +61,20 @@
   [^JobDetail job-detail ^Trigger trigger]
   (.scheduleJob ^Scheduler @*scheduler* job-detail trigger))
 
-(defn unschedule
-  [^TriggerKey tk]
-  (.unscheduleJob ^Scheduler @*scheduler* tk))
+(defprotocol Unscheduling
+  (^Boolean unschedule [key] "Remove the indicated trigger from the scheduler"))
+
+(extend-protocol Unscheduling
+  TriggerKey
+  (unschedule
+    [^TriggerKey key]
+    (.unscheduleJob ^Scheduler @*scheduler* key))
+
+  List
+  (unschedule
+    [^List key]
+    (.unscheduleJobs ^Scheduler @*scheduler* key)))
+
 
 (defprotocol KeyBasedSchedulingPredicates
   (^Boolean scheduled? [key] "Checks if entity with given key already exists within the scheduler"))

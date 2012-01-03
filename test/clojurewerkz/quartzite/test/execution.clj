@@ -135,3 +135,36 @@
     (sched/trigger jk)
     (Thread/sleep 1000)
     (is (= "job-value" (get @value4 "job-key")))))
+
+
+;;
+;; Case 5
+;;
+
+(def counter5 (atom 0))
+
+(defrecord JobE []
+  org.quartz.Job
+  (execute [this ctx]
+    (swap! counter5 inc)))
+
+(deftest test-job-data-access
+  (is (sched/started?))
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job4" "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+        job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobD)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job4" "tests")
+                 (j/using-job-data { "job-key" "job-value" }))
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+                  (t/with-schedule (s/schedule
+                                    (s/with-repeat-count 10)
+                                    (s/with-interval-in-seconds 2))))]
+    (sched/schedule job trigger)
+    (sched/unschedule tk)
+    (sched/schedule job trigger)
+    (sched/unschedule [tk])
+    (Thread/sleep 3000)
+    (is (= 0 @counter5))))
