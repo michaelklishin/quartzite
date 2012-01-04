@@ -5,7 +5,8 @@
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.simple :as s])
-  (:import [java.util.concurrent CountDownLatch]))
+  (:import [java.util.concurrent CountDownLatch]
+           [org.quartz.impl.matchers GroupMatcher]))
 
 
 (sched/start)
@@ -148,30 +149,38 @@
   (execute [this ctx]
     (swap! counter5 inc)))
 
-(deftest test-job-data-access
+(deftest test-job-pausing-resuming-and-unscheduling
   (is (sched/started?))
-  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job5" "tests")
-        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger5" "tests")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job5" "tests.jobs.unscheduling")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger5" "tests.jobs.unscheduling")
         job     (j/build
                  (j/of-type clojurewerkz.quartzite.test.execution.JobE)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job5" "tests")
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job5" "tests.triggers.unscheduling")
                  (j/using-job-data { "job-key" "job-value" }))
         trigger  (t/build
                   (t/start-now)
-                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger5" "tests")
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger5" "tests.triggers.unscheduling")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-seconds 1))))]
     (sched/schedule job trigger)
+    (sched/pause-job jk)
+    (sched/resume-job jk)
+    (sched/pause-jobs (GroupMatcher/groupEquals "tests.jobs.unscheduling"))
+    (sched/resume-jobs (GroupMatcher/groupEquals "tests.jobs.unscheduling"))
+    (sched/pause-trigger tk)
+    (sched/resume-trigger tk)
+    (sched/pause-triggers (GroupMatcher/groupEquals "tests.triggers.unscheduling"))
+    (sched/resume-triggers (GroupMatcher/groupEquals "tests.triggers.unscheduling"))
+    (sched/pause-all!)
+    (sched/resume-all!)
     (sched/unschedule-job tk)
-    (sched/schedule job trigger)
+    (Thread/sleep 300)
     (sched/unschedule-jobs [tk])
-    (sched/schedule job trigger)
     (sched/delete-job jk)
-    (sched/schedule job trigger)
     (sched/delete-jobs [jk])
     (Thread/sleep 3000)
-    ;; with start-now policty one execution
+    ;; with start-now policty some executions
     ;; manages to get through. In part this test is supposed
-    ;; to demonstrate it as much as test unscheduling functions. MK.
-    (is (< @counter5 2))))
+    ;; to demonstrate it as much as test unscheduling/pausing functions. MK.
+    (is (< @counter5 5))))

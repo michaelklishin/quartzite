@@ -1,5 +1,6 @@
 (ns clojurewerkz.quartzite.scheduler
   (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager]
+           [org.quartz.impl.matchers GroupMatcher]
            [java.util List]))
 
 ;;
@@ -76,6 +77,58 @@
 (defn delete-jobs
   [^List keys]
   (.deleteJobs ^Scheduler @*scheduler* keys))
+
+
+(defn unschedule-jobs
+  [^List keys]
+  (.unscheduleJobs ^Scheduler @*scheduler* keys))
+
+(defn delete-jobs
+  [^List keys]
+  (.deleteJobs ^Scheduler @*scheduler* keys))
+
+
+(defn pause-job
+  [^JobKey key]
+  (.pauseJob ^Scheduler @*scheduler* key))
+
+(defn resume-job
+  [^JobKey key]
+  (.resumeJob ^Scheduler @*scheduler* key))
+
+(defn pause-jobs
+  [^GroupMatcher matcher]
+  (.pauseJobs ^Scheduler @*scheduler* matcher))
+
+(defn resume-jobs
+  [^GroupMatcher matcher]
+  (.resumeJobs ^Scheduler @*scheduler* matcher))
+
+(defn pause-trigger
+  [^TriggerKey key]
+  (.pauseTrigger ^Scheduler @*scheduler* key))
+
+(defn resume-trigger
+  [^TriggerKey key]
+  (.resumeTrigger ^Scheduler @*scheduler* key))
+
+(defn pause-triggers
+  [^GroupMatcher matcher]
+  (.pauseTriggers ^Scheduler @*scheduler* matcher))
+
+(defn resume-triggers
+  [^GroupMatcher matcher]
+  (.resumeTriggers ^Scheduler @*scheduler* matcher))
+
+(defn pause-all!
+  []
+  (.pauseAll ^Scheduler @*scheduler*))
+
+(defn resume-all!
+  []
+  (.resumeAll ^Scheduler @*scheduler*))
+
+
 
 
 
