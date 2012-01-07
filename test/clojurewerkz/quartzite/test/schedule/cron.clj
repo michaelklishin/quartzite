@@ -11,8 +11,8 @@
 
 (deftest test-cron-schedule-dsl-example1
   (let [s     "0 0 12 15 * ?"
-        ^DateTime d1     (date-time 2012 2 15 12)
-        ^DateTime d2     (date-time 2012 2 16 12)
+        ^DateTime d1     (date-time 2015 2 15 12)
+        ^DateTime d2     (date-time 2015 2 16 12)
         ^TimeZone tz     (TimeZone/getTimeZone "Europe/Moscow")
         ^CronTriggerImpl sched  (schedule
                                   (cron-schedule s)
@@ -25,8 +25,8 @@
 
 
 (deftest test-cron-schedule-dsl-example2
-  (let [^DateTime d1     (date-time 2012 2 15 15)
-        ^DateTime d2     (date-time 2012 2 16 15)
+  (let [^DateTime d1     (date-time 2015 2 15 15)
+        ^DateTime d2     (date-time 2015 2 16 15)
         ^CronTriggerImpl sched (schedule
                                  (daily-at-hour-and-minute 15 0)
                                  (ignore-misfires)
@@ -37,9 +37,9 @@
 
 
 (deftest test-cron-schedule-dsl-example3
-  (let [^DateTime d1     (date-time 2012 1  5  15)
-        ^DateTime d2     (date-time 2012 1  6  15)
-        ^DateTime d3     (date-time 2012 1  12  15)
+  (let [^DateTime d1     (date-time 2015 1  1  15)
+        ^DateTime d2     (date-time 2015 1  2  15)
+        ^DateTime d3     (date-time 2015 1  8  15)
         ^CronTriggerImpl sched (schedule
                                  (weekly-on-day-and-hour-and-minute DateBuilder/THURSDAY 15 0)
                                  (with-misfire-handling-instruction-do-nothing)
@@ -51,8 +51,8 @@
 
 
 (deftest test-cron-schedule-dsl-example4
-  (let [^DateTime d1     (date-time 2012 1  7  15)
-        ^DateTime d2     (date-time 2012 1  3  15)
+  (let [^DateTime d1     (date-time 2015 1  7  15)
+        ^DateTime d2     (date-time 2015 1  3  15)
         ^CronTriggerImpl sched (schedule
                                  (monthly-on-day-and-hour-and-minute 7 15 0)
                                  (with-misfire-handling-instruction-fire-and-proceed)
