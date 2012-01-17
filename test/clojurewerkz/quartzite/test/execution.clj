@@ -4,7 +4,8 @@
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
-            [clojurewerkz.quartzite.schedule.simple :as s])
+            [clojurewerkz.quartzite.schedule.simple :as s]
+            [clojurewerkz.quartzite.schedule.calendar-interval :as calin])
   (:import [java.util.concurrent CountDownLatch]
            [org.quartz.impl.matchers GroupMatcher]))
 
@@ -184,3 +185,27 @@
     ;; manages to get through. In part this test is supposed
     ;; to demonstrate it as much as test unscheduling/pausing functions. MK.
     (is (< @counter5 5))))
+
+
+;;
+;; Case 6
+;;
+
+(def latch6 (CountDownLatch. 3))
+
+(defrecord JobF []
+  org.quartz.Job
+  (execute [this ctx]
+    (.countDown ^CountDownLatch latch6)))
+
+(deftest test-basic-periodic-execution-with-calendar-interval-schedule
+  (is (sched/started?))
+  (let [job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobF)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job6" "tests"))
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-schedule (calin/schedule
+                                    (calin/with-interval-in-seconds 2))))]
+    (sched/schedule job trigger)
+    (.await ^CountDownLatch latch6)))
