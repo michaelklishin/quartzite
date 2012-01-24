@@ -193,10 +193,9 @@
 
 (def latch6 (CountDownLatch. 3))
 
-(defrecord JobF []
-  org.quartz.Job
-  (execute [this ctx]
-    (.countDown ^CountDownLatch latch6)))
+(j/defjob JobF
+  [ctx]
+    (.countDown ^CountDownLatch latch6))
 
 (deftest test-basic-periodic-execution-with-calendar-interval-schedule
   (is (sched/started?))

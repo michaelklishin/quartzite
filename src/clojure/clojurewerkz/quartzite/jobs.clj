@@ -65,3 +65,13 @@
   [& body]
   `(let [jb# (JobBuilder/newJob)]
      (finalize (-> jb# ~@body))))
+
+;; This macro is necessary because clojure.core/proxy and clojure.core/reify
+;; do not work for this specific use case with Quartz. See https://groups.google.com/forum/#!topic/clojure/WIIcvsYLzh0
+;; for the discussion. MK.
+(defmacro defjob
+  [jtype args & body]
+  `(defrecord ~jtype []
+       org.quartz.Job
+     (execute [this ~@args]
+       ~@body)))
