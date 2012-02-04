@@ -57,6 +57,19 @@ CI is hosted by [travis-ci.org](http://travis-ci.org)
 Quartzite is built from the ground up for Clojure 1.3 and up.
 
 
+## Development
+
+Install [lein-multi](https://github.com/maravillas/lein-multi) with
+
+    lein plugin install lein-multi 1.1.0
+
+then run tests against Clojure 1.3.0 and 1.4.0[-beta1] using
+
+    lein multi test
+
+Then create a branch and make your changes on it. Once you are done with your changes and all tests pass, submit
+a pull request on Github.
+
 
 ## License
 
