@@ -8,10 +8,11 @@
                              :releases {:checksum :fail :update :always}
                              }
                  }
-  :dependencies [[org.clojure/clojure         "1.3.0"]]
+  :dependencies [[org.clojure/clojure         "1.3.0"]
+                 [org.quartz-scheduler/quartz "2.1.3"]]
   :multi-deps {
                "1.4" [[org.clojure/clojure "1.4.0-beta1"]]
-               :all [[org.quartz-scheduler/quartz "2.1.2"]]
+               :all [[org.quartz-scheduler/quartz "2.1.3"]]
                }
   :dev-dependencies [[clj-time                  "0.3.5" :exclusions [org.clojure/clojure]]
                      [org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
