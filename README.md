@@ -38,7 +38,33 @@ Once the library matures, we will update this document.
 
 With Leiningen:
 
+    [clojurewerkz/quartzite "1.0.0-beta1"]
+
+With Maven:
+
+    <dependency>
+      <groupId>clojurewerkz</groupId>
+      <artifactId>quartzite</artifactId>
+      <version>1.0.0-beta1</version>
+    </dependency>
+
+
+### Snapshots
+
+If you are comfortable with usugin snapshots, snapshot artifacts are [released to Clojars](https://clojars.org/clojurewerkz/quartzite) every 24 hours.
+
+With Leiningen:
+
     [clojurewerkz/quartzite "1.0.0-SNAPSHOT"]
+
+
+With Maven:
+
+    <dependency>
+      <groupId>clojurewerkz</groupId>
+      <artifactId>quartzite</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
 
 New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/quartzite) every few days.
 
