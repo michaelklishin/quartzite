@@ -7,7 +7,7 @@
 ;; Implementation
 ;;
 
-(def ^:dynamic *scheduler* (atom (org.quartz.impl.StdSchedulerFactory/getDefaultScheduler)))
+(def ^:dynamic *scheduler* (atom nil))
 
 
 
@@ -21,6 +21,12 @@
   `(binding [*scheduler* ~sched]
      (do ~@body)))
 
+
+(defn initialize
+  ([]
+     (initialize (org.quartz.impl.StdSchedulerFactory/getDefaultScheduler)))
+  ([scheduler]
+     (reset! *scheduler* scheduler)))
 
 (defn start
   []

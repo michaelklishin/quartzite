@@ -10,6 +10,7 @@
            [org.quartz.impl.matchers GroupMatcher]))
 
 
+(sched/initialize)
 (sched/start)
 
 
