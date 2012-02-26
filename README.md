@@ -33,6 +33,12 @@ Once the library matures, we will update this document.
  * Custom configuration: no additions necessary thanks to Quartz
 
 
+## Community
+
+[Quartzite has a mailing list](https://groups.google.com/group/clojure-quartz). Feel free to join it and ask any questions you may have.
+
+To subscribe for announcements of releases, important changes and so on, please follow [@ClojureWerkz](https://twitter.com/#!/clojurewerkz) on Twitter.
+
 
 ## Maven Artifacts
 
