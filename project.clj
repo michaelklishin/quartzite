@@ -13,7 +13,8 @@
                  [clj-time                    "0.3.7" :exclusions [org.clojure/clojure]]]
   :multi-deps {
                "1.4" [[org.clojure/clojure "1.4.0-beta1"]]
-               :all [[org.quartz-scheduler/quartz "2.1.3"]]
+               :all [[org.quartz-scheduler/quartz "2.1.3"]
+                     [clj-time                    "0.3.7" :exclusions [org.clojure/clojure]]]
                }
   :dev-dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
                      [org.slf4j/slf4j-simple    "1.6.2"]
