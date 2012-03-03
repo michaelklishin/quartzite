@@ -56,5 +56,6 @@
      (today-at hours minutes 0)))
 
 (defn periodic-seq
+  "Returns a lazy sequence of date-time values growing over specific period"
   [^DateTime start ^Period period]
   (iterate (fpartial plus period) start))
