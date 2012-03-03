@@ -1,4 +1,4 @@
-(defproject clojurewerkz/quartzite "1.0.0-SNAPSHOT"
+(defproject clojurewerkz/quartzite "1.0.0-beta2"
   :description "Quarzite is a thin Clojure layer on top the Quartz Scheduler"
   :license { :name "Eclipse Public License" }
   :repositories {
