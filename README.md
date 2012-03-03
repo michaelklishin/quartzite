@@ -44,14 +44,14 @@ To subscribe for announcements of releases, important changes and so on, please 
 
 With Leiningen:
 
-    [clojurewerkz/quartzite "1.0.0-beta1"]
+    [clojurewerkz/quartzite "1.0.0-beta2"]
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
       <artifactId>quartzite</artifactId>
-      <version>1.0.0-beta1</version>
+      <version>1.0.0-beta2</version>
     </dependency>
 
 
@@ -95,7 +95,7 @@ Install [lein-multi](https://github.com/maravillas/lein-multi) with
 
     lein plugin install lein-multi 1.1.0
 
-then run tests against Clojure 1.3.0 and 1.4.0[-beta1] using
+then run tests against Clojure 1.3.0 and 1.4.0[-beta2] using
 
     lein multi test
 
@@ -105,6 +105,6 @@ a pull request on Github.
 
 ## License
 
-Copyright (C) 2011 Michael S. Klishin
+Copyright (C) 2011-2012 Michael S. Klishin
 
 Distributed under the Eclipse Public License, the same as Clojure.
