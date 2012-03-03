@@ -1,6 +1,18 @@
 (ns clojurewerkz.quartzite.date-time
   (:use [clj-time.core :only [date-time now interval minus plus years months weeks days hours minutes from-now after? within? ago]])
-  (:import [org.joda.time DateTime DateMidnight MutableDateTime]))
+  (:import [org.joda.time DateTime DateMidnight MutableDateTime Period]))
+
+
+;;
+;; Implementation
+;;
+
+(defn fpartial
+  "Like clojure.core/partial but prepopulates last N arguments (first is passed in later)"
+  [f & args]
+  (fn [arg & more] (apply f arg (concat args more))))
+
+
 
 
 ;;
@@ -42,3 +54,7 @@
      (today-at hours minutes seconds 0))
   ([^long hours ^long minutes]
      (today-at hours minutes 0)))
+
+(defn periodic-seq
+  [^DateTime start ^Period period]
+  (iterate (fpartial plus period) start))
