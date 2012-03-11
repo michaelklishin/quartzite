@@ -9,6 +9,7 @@
   (:import [java.util.concurrent CountDownLatch]
            [org.quartz.impl.matchers GroupMatcher]))
 
+(println (str "Using Clojure version " *clojure-version*))
 
 (sched/initialize)
 (sched/start)

@@ -6,3 +6,7 @@ Several date/time functions extracted from various apps that use Quartzite will 
 incubating in the `clojurewerkz.quartzite.date-time` namespace for possible inclusion
 into clj-time. date/time functions are very relevant to Quartzite and thus depending
 on clj-time and providing additional functions makes sense.
+
+### Leiningen 2
+
+Quartzite now uses [Leiningen 2](https://github.com/technomancy/leiningen/wiki/Upgrading).
