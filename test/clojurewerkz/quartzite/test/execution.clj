@@ -49,12 +49,11 @@
 
 (def counter2 (atom 0))
 
-(defrecord JobB []
-  org.quartz.Job
-  (execute [this ctx]
-    (swap! counter2 inc)))
+(j/defjob JobB
+  [ctx]
+  (swap! counter2 inc))
 
-(deftest test-unscheduling-of-a-job-defined-using-defrecord
+(deftest test-unscheduling-of-a-job-defined-using-defjob
   (is (sched/started?))
   (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job2"     "tests")
         tk      (t/key "clojurewerkz.quartzite.test.execution.trigger2" "tests")
@@ -85,12 +84,11 @@
 
 (def counter3 (atom 0))
 
-(defrecord JobC []
-  org.quartz.Job
-  (execute [this ctx]
-    (swap! counter3 inc)))
+(j/defjob JobC
+  [ctx]
+  (swap! counter3 inc))
 
-(deftest test-manual-triggering-of-a-job-defined-using-defrecord
+(deftest test-manual-triggering-of-a-job-defined-using-defjob
   (is (sched/started?))
   (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job3" "tests")
         tk      (t/key "clojurewerkz.quartzite.test.execution.trigger3" "tests")
@@ -115,11 +113,10 @@
 
 (def value4 (atom nil))
 
-(defrecord JobD []
-  org.quartz.Job
-  (execute [this ctx]
-    (swap! value4 (fn [_]
-                    (from-job-data (.getMergedJobDataMap ctx))))))
+(j/defjob JobD
+  [ctx]
+  (swap! value4 (fn [_]
+                  (from-job-data (.getMergedJobDataMap ctx)))))
 
 (deftest test-job-data-access
   (is (sched/started?))
@@ -147,10 +144,9 @@
 
 (def counter5 (atom 0))
 
-(defrecord JobE []
-  org.quartz.Job
-  (execute [this ctx]
-    (swap! counter5 inc)))
+(j/defjob JobE
+  [ctx]
+  (swap! counter5 inc))
 
 (deftest test-job-pausing-resuming-and-unscheduling
   (is (sched/started?))
@@ -197,7 +193,7 @@
 
 (j/defjob JobF
   [ctx]
-    (.countDown ^CountDownLatch latch6))
+  (.countDown ^CountDownLatch latch6))
 
 (deftest test-basic-periodic-execution-with-calendar-interval-schedule
   (is (sched/started?))
