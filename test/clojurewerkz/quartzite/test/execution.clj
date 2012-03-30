@@ -146,7 +146,8 @@
 
 (j/defjob JobE
   [ctx]
-  (swap! counter5 inc))
+  (let [i (get (from-job-data ctx) "job-key")]
+    (swap! counter5 + i)))
 
 (deftest test-job-pausing-resuming-and-unscheduling
   (is (sched/started?))
@@ -155,7 +156,7 @@
         job     (j/build
                  (j/of-type clojurewerkz.quartzite.test.execution.JobE)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job5" "tests.triggers.unscheduling")
-                 (j/using-job-data { "job-key" "job-value" }))
+                 (j/using-job-data { "job-key" 2 }))
         trigger  (t/build
                   (t/start-now)
                   (t/with-identity "clojurewerkz.quartzite.test.execution.trigger5" "tests.triggers.unscheduling")
@@ -182,7 +183,7 @@
     ;; with start-now policty some executions
     ;; manages to get through. In part this test is supposed
     ;; to demonstrate it as much as test unscheduling/pausing functions. MK.
-    (is (< @counter5 5))))
+    (is (< @counter5 10))))
 
 
 ;;

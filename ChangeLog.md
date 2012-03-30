@@ -1,5 +1,10 @@
 ## Changes between Quartzite 1.0.0-beta1 and 1.0.0-beta2
 
+### JobDataMapConversion protocol now supports JobExecutionContext
+
+`clojurewerkz.quartzite.conversion.from-job-data` now can work with JobExecutionContext instances.
+
+
 ### Utility date/time functions, clj-time dependency
 
 Several date/time functions extracted from various apps that use Quartzite will be

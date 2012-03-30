@@ -1,6 +1,6 @@
 (ns clojurewerkz.quartzite.conversion
   (:refer-clojure :exclude [key])
-  (:import [org.quartz JobDataMap]
+  (:import [org.quartz JobDataMap JobExecutionContext]
            [org.quartz.utils Key]
            [clojure.lang IPersistentMap]
            [org.quartz.impl JobDetailImpl]))
@@ -24,4 +24,8 @@
 
   JobDataMap
   (from-job-data [^JobDataMap input]
-    (into {} input)))
+    (into {} input))
+
+  JobExecutionContext
+  (from-job-data [^JobExecutionContext input]
+    (from-job-data (.getMergedJobDataMap input))))
