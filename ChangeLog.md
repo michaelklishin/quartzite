@@ -7,7 +7,7 @@ No changes yet
 
 ### JobDataMapConversion protocol now supports JobExecutionContext
 
-`clojurewerkz.quartzite.conversion.from-job-data` now can work with JobExecutionContext instances.
+`clojurewerkz.quartzite.conversion/from-job-data` now can work with JobExecutionContext instances.
 
 
 
