@@ -44,14 +44,14 @@ To subscribe for announcements of releases, important changes and so on, please 
 
 With Leiningen:
 
-    [clojurewerkz/quartzite "1.0.0-beta2"]
+    [clojurewerkz/quartzite "1.0.0-beta4"]
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
       <artifactId>quartzite</artifactId>
-      <version>1.0.0-beta2</version>
+      <version>1.0.0-beta4</version>
     </dependency>
 
 
