@@ -6,10 +6,9 @@ Quarzite is a thin idiomatic Clojure layer on top the [Quartz Scheduler](http://
 ## Usage
 
 Quartzite is a young project and until 1.0 is released and documentation guides are written,
-it may be challenging to use for anyone except the author. For code examples, see our test
-suite.
+it may be challenging to use. For code examples, see our test suite.
 
-Once the library matures, we will update this document.
+Once documentation guides are written, we will update this document.
 
 
 ## Project goals
@@ -29,7 +28,7 @@ Once the library matures, we will update this document.
  * Daily time interval scheduling: complete
  * Calendar interval scheduling: complete
  * Persistent and/or custom Job Store support: no additions necessary thanks to Quartz
- * Listeners: not yet
+ * Listeners: complete
  * Custom configuration: no additions necessary thanks to Quartz
 
 
