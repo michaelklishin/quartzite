@@ -67,12 +67,10 @@
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 400))))]
     (sched/schedule job trigger)
-    (is (sched/scheduled? jk))
-    (is (sched/scheduled? tk))
+    (is (sched/all-scheduled? jk tk))
     (Thread/sleep 2000)
     (sched/unschedule-job tk)
-    (is (not (sched/scheduled? jk)))
-    (is (not (sched/scheduled? tk)))
+    (is (not (sched/all-scheduled? tk jk)))
     (Thread/sleep 2000)
     (is (< @counter2 7))))
 

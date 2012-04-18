@@ -1,6 +1,10 @@
 ## Changes between Quartzite 1.0.0-beta3 and 1.0.0-beta4
 
-No changes yet
+### quartzite.scheduler/all-scheduled?
+
+`clojurewerkz.quartzite.scheduler/all-scheduled?` is a convenient way to check if several keys
+(trigger or job) are scheduled.
+
 
 
 ## Changes between Quartzite 1.0.0-beta2 and 1.0.0-beta3
