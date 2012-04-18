@@ -1,3 +1,9 @@
+## Changes between Quartzite 1.0.0-beta4 and 1.0.0-beta5
+
+No changes yet.
+
+
+
 ## Changes between Quartzite 1.0.0-beta3 and 1.0.0-beta4
 
 ### quartzite.scheduler/all-scheduled?
