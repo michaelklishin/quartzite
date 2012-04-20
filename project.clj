@@ -8,12 +8,11 @@
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :profiles {:1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
-             :1.5 {:dependencies [[org.clojure/clojure "1.5.0-master-SNAPSHOT"]]}
              :dev {:resource-paths ["test/resources"]
                    :dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
                                   [org.slf4j/slf4j-simple    "1.6.2"]
                                   [org.slf4j/slf4j-api       "1.6.2"]]}}
-  :aliases {"all" ["with-profile" "dev:dev,1.4:dev,1.5"]}
+  :aliases {"all" ["with-profile" "dev:dev,1.4"]}
   :repositories {"clojure-releases" "http://build.clojure.org/releases"
                  "sonatype" {:url "http://oss.sonatype.org/content/repositories/releases"
                              :snapshots false
