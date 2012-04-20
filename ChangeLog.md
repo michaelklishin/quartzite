@@ -1,6 +1,8 @@
 ## Changes between Quartzite 1.0.0-beta4 and 1.0.0-beta5
 
-No changes yet.
+### clj-time Upgraded to 0.4.1
+
+[clj-time](https://github.com/seancorfield/clj-time) dependency has been upgraded to version 0.4.1.
 
 
 
