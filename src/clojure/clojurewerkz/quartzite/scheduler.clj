@@ -175,7 +175,16 @@
   [& keys]
   (every? scheduled? keys))
 
+(defn maybe-schedule
+  "Adds given job to the scheduler and associates it with given trigger but only if they
+   are not already known to the scheduler.
 
+   Like schedule but avoids org.quartz.ObjectAlreadyExistsException by checking if keys of
+   provided job and trigger are already scheduled and do not need to be scheduled again"
+  [^JobDetail job-detail ^Trigger trigger]
+  (when-not (all-scheduled? (.getKey job-detail)
+                            (.getKey trigger))
+    (.scheduleJob ^Scheduler @*scheduler* job-detail trigger)))
 
 
 (defn trigger

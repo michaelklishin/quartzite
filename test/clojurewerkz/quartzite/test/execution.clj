@@ -205,3 +205,34 @@
                                     (calin/with-interval-in-seconds 2))))]
     (sched/schedule job trigger)
     (.await ^CountDownLatch latch6)))
+
+
+
+;;
+;; Case 7
+;;
+
+(def counter7 (atom 0))
+
+(j/defjob JobG
+  [ctx]
+  (swap! counter7 inc))
+
+(deftest ^:focus test-double-scheduling
+  (is (sched/started?))
+  (let [job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobG)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job7" "tests"))
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-schedule (calin/schedule
+                                    (calin/with-interval-in-seconds 2))))]
+    (sched/schedule job trigger)
+    ;; schedule will raise an exception
+    (is (thrown?
+     org.quartz.ObjectAlreadyExistsException
+     (sched/schedule job trigger)))
+    ;; but maybe-schedule will not
+    (sched/maybe-schedule job trigger)
+    (Thread/sleep 5000)
+    (is (= 3 @counter7))))

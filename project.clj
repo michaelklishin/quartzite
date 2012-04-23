@@ -7,6 +7,9 @@
                  [clj-time "0.4.1"]]
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
+  :test-selectors {:all     (constantly true)
+                   :focus   :focus
+                   :default (constantly true)}
   :profiles {:1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
              :dev {:resource-paths ["test/resources"]
                    :dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]

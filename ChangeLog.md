@@ -1,6 +1,12 @@
-## Changes between Quartzite 1.0.0-beta5 and 1.0.0-beta6
+## Changes between Quartzite 1.0.0-beta5 and 1.0.0-rc1
 
-No changes yet.
+### quartzite.scheduler/maybe-schedule
+
+`clojurewerkz.quartzite.scheduler/maybe-schedule` is a variation of `clojurewerkz.quartzite.scheduler/schedule`
+that won't schedule (trigger, job) pair more than once. It thus avoids `org.quartz.ObjectAlreadyExistsException`
+exceptions that Quartz will raise when one attempts to schedule the same job on the same trigger/schedule more
+than once.
+
 
 
 
