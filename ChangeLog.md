@@ -1,3 +1,21 @@
+## Changes between Quartzite 1.0.0-rc1 and 1.0.0-rc2
+
+### Better clj-time and Joda Time integration
+
+`clojurewerkz.quartzite.conversions/to-date` was introduced to convert various inputs (for example,
+variosu Joda Time date/time objects) to `java.util.Date`. This makes it possible to use Joda Time objects
+in the trigger builder DSL:
+
+``` clojure
+(t/build
+  ;; uses an org.joda.time.DateTime instance
+  (t/start-at (-> 2 secs from-now))
+  (t/with-schedule (calin/schedule
+                     (calin/with-interval-in-seconds 2))))
+```
+
+
+
 ## Changes between Quartzite 1.0.0-beta5 and 1.0.0-rc1
 
 ### quartzite.scheduler/maybe-schedule
