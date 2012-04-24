@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"}
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [org.quartz-scheduler/quartz "2.1.3"]
-                 [clj-time "0.4.1"]]
+                 [clj-time "0.4.2"]]
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :test-selectors {:all     (constantly true)
