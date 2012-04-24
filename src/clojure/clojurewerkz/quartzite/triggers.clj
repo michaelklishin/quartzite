@@ -2,8 +2,8 @@
   (:refer-clojure :exclude [key])
   (:import [org.quartz Trigger TriggerBuilder TriggerKey ScheduleBuilder]
            [org.quartz.utils Key]
-           [java.util Date])
-  (:use    [clojurewerkz.quartzite.conversion :only [to-job-data]]))
+           java.util.Date)
+  (:use    [clojurewerkz.quartzite.conversion :only [to-job-data to-date]]))
 
 
 ;;
@@ -58,18 +58,16 @@
   (.startNow tb))
 
 
-;; multimethods make it possible to support date classes
-;; other than java.util.Date here. Seamless JodaTime integration is one
+;; Seamless JodaTime integration is one
 ;; of the goals of Quartzite.
-(defmulti  start-at (fn [builder date] (type date)))
-(defmethod start-at Date
-  [^TriggerBuilder builder ^Date start]
-  (.startAt builder start))
+(defn start-at
+  [^TriggerBuilder tb date]
+  (.startAt tb (to-date date)))
 
-(defmulti  end-at (fn [builder date] (type date)))
-(defmethod end-at Date
-  [^TriggerBuilder builder ^Date end]
-  (.endAt builder end))
+(defn end-at
+  [^TriggerBuilder tb date]
+  (.endAt tb (to-date date)))
+
 
 
 (defn for-job

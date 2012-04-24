@@ -29,3 +29,27 @@
   JobExecutionContext
   (from-job-data [^JobExecutionContext input]
     (from-job-data (.getMergedJobDataMap input))))
+
+
+(defprotocol DateConversion
+  (to-date [input] "Converts given input to java.util.Date"))
+
+(extend-protocol DateConversion
+  java.util.Date
+  (to-date [input]
+    input)
+
+  ;; common cases
+  org.joda.time.DateTime
+  (to-date [input]
+    (.toDate input))
+  org.joda.time.MutableDateTime
+  (to-date [input]
+    (.toDate input))
+
+  ;; catch-all for Joda Date types convertable to java.util.Date
+  org.joda.time.base.BaseDateTime
+  (to-date [input]
+    (.toDate input)))
+
+

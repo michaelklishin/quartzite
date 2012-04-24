@@ -1,13 +1,14 @@
 (ns clojurewerkz.quartzite.test.execution
-  (:use [clojure.test]
-        [clojurewerkz.quartzite.conversion])
+  (:use clojure.test
+        clojurewerkz.quartzite.conversion
+        [clj-time.core :only [now secs from-now]])
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.simple :as s]
             [clojurewerkz.quartzite.schedule.calendar-interval :as calin])
-  (:import [java.util.concurrent CountDownLatch]
-           [org.quartz.impl.matchers GroupMatcher]))
+  (:import java.util.concurrent.CountDownLatch
+           org.quartz.impl.matchers.GroupMatcher))
 
 (println (str "Using Clojure version " *clojure-version*))
 
@@ -224,7 +225,7 @@
                  (j/of-type clojurewerkz.quartzite.test.execution.JobG)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job7" "tests"))
         trigger  (t/build
-                  (t/start-now)
+                  (t/start-at (-> 2 secs from-now))
                   (t/with-schedule (calin/schedule
                                     (calin/with-interval-in-seconds 2))))]
     (is (sched/schedule job trigger))
@@ -234,5 +235,5 @@
      (sched/schedule job trigger)))
     ;; but maybe-schedule will not
     (is (not (sched/maybe-schedule job trigger)))
-    (Thread/sleep 5000)
+    (Thread/sleep 7000)
     (is (= 3 @counter7))))
