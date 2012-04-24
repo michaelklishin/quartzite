@@ -1,9 +1,9 @@
 (ns clojurewerkz.quartzite.test.date-time
-  (:use [clojurewerkz.quartzite.date-time]
-        [clojure.test]
+  (:use clojurewerkz.quartzite.date-time
+        clojure.test
         [clj-time.core :only [now interval minus plus years months weeks days hours minutes from-now after? within? ago date-time]])
-  (:import [java.util Date]
-           [org.joda.time DateTime]))
+  (:import java.util.Date
+           org.joda.time.DateTime))
 
 
 (deftest test-last-day-of-the-month
