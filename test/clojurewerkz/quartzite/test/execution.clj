@@ -227,12 +227,12 @@
                   (t/start-now)
                   (t/with-schedule (calin/schedule
                                     (calin/with-interval-in-seconds 2))))]
-    (sched/schedule job trigger)
+    (is (sched/schedule job trigger))
     ;; schedule will raise an exception
     (is (thrown?
      org.quartz.ObjectAlreadyExistsException
      (sched/schedule job trigger)))
     ;; but maybe-schedule will not
-    (sched/maybe-schedule job trigger)
+    (is (not (sched/maybe-schedule job trigger)))
     (Thread/sleep 5000)
     (is (= 3 @counter7))))
