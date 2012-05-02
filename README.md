@@ -1,6 +1,6 @@
 # Quarzite, a thin Clojure layer on top the Quartz Scheduler
 
-Quarzite is a thin idiomatic Clojure layer on top the [Quartz Scheduler](http://quartz-scheduler.org/).
+Quarzite is a powerful Clojure scheduling library built on top the [Quartz Scheduler](http://quartz-scheduler.org/).
 
 
 ## Usage
@@ -30,6 +30,11 @@ Once documentation guides are written, we will update this document.
  * Persistent and/or custom Job Store support: no additions necessary thanks to Quartz
  * Listeners: complete
  * Custom configuration: no additions necessary thanks to Quartz
+
+
+## Supported Clojure versions
+
+Quartzite is built from the ground up for Clojure 1.3 and up.
 
 
 ## Community
@@ -75,6 +80,13 @@ New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/qua
 
 
 
+## Monger Is a ClojureWerkz Project
+
+Quartzite is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org), together with
+[Neocons](https://github.com/michaelklishin/neocons), [Langohr](https://github.com/michaelklishin/langohr), [Elastisch](https://github.com/clojurewerkz/elastisch), [Welle](https://github.com/michaelklishin/welle), [Monger](https://github.com/michaelklishin/monger) and several others.
+
+
+
 ## Continuous Integration
 
 [![Continuous Integration status](https://secure.travis-ci.org/michaelklishin/quartzite.png)](http://travis-ci.org/michaelklishin/quartzite)
@@ -82,10 +94,6 @@ New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/qua
 
 CI is hosted by [travis-ci.org](http://travis-ci.org)
 
-
-## Supported Clojure versions
-
-Quartzite is built from the ground up for Clojure 1.3 and up.
 
 
 ## Development
