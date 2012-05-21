@@ -1,6 +1,11 @@
 ## Changes between Quartzite 1.0.0-rc2 and 1.0.0-rc3
 
-### clj-time Upgraded to 0.4.2
+### Quartz updagraded to 2.1.5
+
+Quartz Scheduler was upgraded to version 2.1.5.
+
+
+### clj-time upgraded to 0.4.2
 
 [clj-time](https://github.com/seancorfield/clj-time) dependency has been upgraded to version 0.4.2, uses
 [Joda Time 2.1](https://github.com/JodaOrg/joda-time/blob/master/RELEASE-NOTES.txt).
