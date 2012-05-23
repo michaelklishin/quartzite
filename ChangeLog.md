@@ -1,5 +1,27 @@
 ## Changes between Quartzite 1.0.0-rc2 and 1.0.0-rc3
 
+### clojurewerkz.quartzite.matchers
+
+`clojurewerkz.quartzite.matchers` namespaces provides factory functions that instatiate various group matchers.
+Group matchers are used to retrieve trigger and job keys using functions in the `clojurewerkz.quartzite.scheduler`
+namespace:
+
+``` clojure
+(ns my.service
+  (:require [clojurewerkz.quartzite.scheduler :as s]
+            [clojurewerkz.quartzite.matchers :as m]))
+
+;; initialize the scheduler, add some triggers and jobs
+;; ...
+
+;; retrieve a set of trigger keys in the group "billing"
+(s/get-trigger-keys (m/group-equals "billing"))
+
+;; retrieve a set of job keys in all groups that start with "emails"
+(s/get-job-keys (m/group-starts-with "emails"))
+```
+
+
 ### Quartz updagraded to 2.1.5
 
 Quartz Scheduler was upgraded to version 2.1.5.
