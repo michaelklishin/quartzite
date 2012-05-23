@@ -1,3 +1,9 @@
+## Changes between Quartzite 1.0.0-rc3 and 1.0.0-rc4
+
+No changes yet.
+
+
+
 ## Changes between Quartzite 1.0.0-rc2 and 1.0.0-rc3
 
 ### clojurewerkz.quartzite.matchers
