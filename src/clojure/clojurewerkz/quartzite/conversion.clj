@@ -1,9 +1,9 @@
 (ns clojurewerkz.quartzite.conversion
   (:refer-clojure :exclude [key])
   (:import [org.quartz JobDataMap JobExecutionContext]
-           [org.quartz.utils Key]
-           [clojure.lang IPersistentMap]
-           [org.quartz.impl JobDetailImpl]))
+           org.quartz.utils.Key
+           clojure.lang.IPersistentMap
+           [org.quartz.impl.JobDetailImpl]))
 
 
 ;;
@@ -51,5 +51,3 @@
   org.joda.time.base.BaseDateTime
   (to-date [input]
     (.toDate input)))
-
-

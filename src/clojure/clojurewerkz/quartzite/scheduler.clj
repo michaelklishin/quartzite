@@ -1,7 +1,7 @@
 (ns clojurewerkz.quartzite.scheduler
   (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager]
-           [org.quartz.impl.matchers GroupMatcher]
-           [java.util List]))
+           org.quartz.impl.matchers.GroupMatcher
+           java.util.List))
 
 ;;
 ;; Implementation
@@ -155,7 +155,17 @@
   (.resumeAll ^Scheduler @*scheduler*))
 
 
+(defn get-trigger-keys
+  "Returns a set of keys that match the given group matcher. See functions in the clojurewerkz.quartzite.matchers.*
+   namespace."
+  [^GroupMatcher gm]
+  (.getTriggerKeys ^Scheduler @*scheduler* gm))
 
+(defn get-job-keys
+  "Returns a set of keys that match the given group matcher. See functions in the clojurewerkz.quartzite.matchers.*
+   namespace."
+  [^GroupMatcher gm]
+  (.getJobKeys ^Scheduler @*scheduler* gm))
 
 
 (defprotocol KeyPredicates

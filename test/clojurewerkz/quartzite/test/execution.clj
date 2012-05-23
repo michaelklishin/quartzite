@@ -5,6 +5,7 @@
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
+            [clojurewerkz.quartzite.matchers  :as m]
             [clojurewerkz.quartzite.schedule.simple :as s]
             [clojurewerkz.quartzite.schedule.calendar-interval :as calin])
   (:import java.util.concurrent.CountDownLatch
@@ -69,6 +70,8 @@
                                     (s/with-interval-in-milliseconds 400))))]
     (sched/schedule job trigger)
     (is (sched/all-scheduled? jk tk))
+    (is (not (empty? (sched/get-trigger-keys (m/group-equals "tests")))))
+    (is (not (empty? (sched/get-job-keys (m/group-equals "tests")))))
     (Thread/sleep 2000)
     (sched/unschedule-job tk)
     (is (not (sched/all-scheduled? tk jk)))
