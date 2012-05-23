@@ -1,7 +1,7 @@
 (ns clojurewerkz.quartzite.triggers
   (:refer-clojure :exclude [key])
   (:import [org.quartz Trigger TriggerBuilder TriggerKey ScheduleBuilder]
-           [org.quartz.utils Key]
+           org.quartz.utils.Key
            java.util.Date)
   (:use    [clojurewerkz.quartzite.conversion :only [to-job-data to-date]]))
 

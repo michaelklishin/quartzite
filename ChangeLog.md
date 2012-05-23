@@ -1,6 +1,10 @@
 ## Changes between Quartzite 1.0.0-rc3 and 1.0.0-rc4
 
-No changes yet.
+### clojurewerkz.quartzite.scheduler/get-trigger and /get-job
+
+`clojurewerkz.quartzite.scheduler/get-trigger` and `clojurewerkz.quartzite.scheduler/get-job` return trigger and job instances
+for the supplied key. `clojurewerkz.quartzite.conversion/from-trigger` and `clojurewerkz.quartzite.conversion/from-job-detail` can be
+used to produce Clojure maps from those instances (for example, for easy serialization to JSON or any other format)
 
 
 

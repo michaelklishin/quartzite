@@ -41,6 +41,12 @@
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 200))))]
     (sched/schedule job trigger)
+    (let [j (sched/get-job (j/key "clojurewerkz.quartzite.test.execution.job1" "tests"))
+          m (from-job-detail j)]
+      (is j)
+      (is (:key m))
+      (is (nil? (:description m)))
+      (is (:job-data m)))
     (.await ^CountDownLatch latch1)))
 
 
@@ -65,11 +71,22 @@
         trigger  (t/build
                   (t/start-now)
                   (t/with-identity "clojurewerkz.quartzite.test.execution.trigger2" "tests")
+                  (t/with-description "just a trigger")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 400))))]
     (sched/schedule job trigger)
     (is (sched/all-scheduled? jk tk))
+    (let [t (sched/get-trigger tk)
+          m (from-trigger t)]
+      (is t)
+      (is (:key m))
+      (is (:description m))
+      (is (:start-time m))
+      (is (:next-fire-time m)))
+    (is (sched/get-job jk))
+    (is (nil? (sched/get-job (j/key "ab88fsyd7f" "k28s8d77s"))))
+    (is (nil? (sched/get-trigger (t/key "ab88fsyd7f"))))
     (is (not (empty? (sched/get-trigger-keys (m/group-equals "tests")))))
     (is (not (empty? (sched/get-job-keys (m/group-equals "tests")))))
     (Thread/sleep 2000)
@@ -223,20 +240,20 @@
   (swap! counter7 inc))
 
 (deftest ^:focus test-double-scheduling
-  (is (sched/started?))
-  (let [job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobG)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job7" "tests"))
-        trigger  (t/build
-                  (t/start-at (-> 2 secs from-now))
-                  (t/with-schedule (calin/schedule
-                                    (calin/with-interval-in-seconds 2))))]
-    (is (sched/schedule job trigger))
-    ;; schedule will raise an exception
-    (is (thrown?
-     org.quartz.ObjectAlreadyExistsException
-     (sched/schedule job trigger)))
-    ;; but maybe-schedule will not
-    (is (not (sched/maybe-schedule job trigger)))
-    (Thread/sleep 7000)
-    (is (= 3 @counter7))))
+         (is (sched/started?))
+         (let [job     (j/build
+                        (j/of-type clojurewerkz.quartzite.test.execution.JobG)
+                        (j/with-identity "clojurewerkz.quartzite.test.execution.job7" "tests"))
+               trigger  (t/build
+                         (t/start-at (-> 2 secs from-now))
+                         (t/with-schedule (calin/schedule
+                                           (calin/with-interval-in-seconds 2))))]
+           (is (sched/schedule job trigger))
+           ;; schedule will raise an exception
+           (is (thrown?
+                org.quartz.ObjectAlreadyExistsException
+                (sched/schedule job trigger)))
+           ;; but maybe-schedule will not
+           (is (not (sched/maybe-schedule job trigger)))
+           (Thread/sleep 7000)
+           (is (= 3 @counter7))))

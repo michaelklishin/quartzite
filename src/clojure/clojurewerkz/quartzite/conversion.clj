@@ -2,19 +2,19 @@
   (:refer-clojure :exclude [key])
   (:import [org.quartz JobDataMap JobExecutionContext]
            org.quartz.utils.Key
+           [org.quartz TriggerKey JobKey]
            clojure.lang.IPersistentMap
-           [org.quartz.impl.JobDetailImpl]))
+           [org.quartz JobDetail Trigger]))
 
 
 ;;
 ;; API
 ;;
 
-;; we may go back to regular functions eventually, we will see
-;; if JodaTime or Monger integration may need/benefit from extension points here. MK.
+;; Monger and other ClojureWerkz project integration extension point. MK.
 (defprotocol JobDataMapConversion
-  (to-job-data   [input] "Converts Clojure data to JobDataMap that Quartz uses")
-  (from-job-data [input] "Converts JobDataMap that Quartz uses to Clojure data structures"))
+  (to-job-data   [input] "Instantiates a JobDataMap instance from a Clojure map")
+  (from-job-data [input] "Converts a JobDataMap to a Clojure map"))
 
 (extend-protocol JobDataMapConversion
   IPersistentMap
@@ -29,6 +29,30 @@
   JobExecutionContext
   (from-job-data [^JobExecutionContext input]
     (from-job-data (.getMergedJobDataMap input))))
+
+
+(defn from-key
+  "Converts a Key instance (TriggerKey, JobKey) to a Clojure map"
+  [^Key key]
+  {:name (.getName key)
+   :group (.getGroup key)})
+
+(defn from-job-detail
+  [^JobDetail jd]
+  {:key (from-key (.getKey jd))
+   :description (.getDescription jd)
+   :job-data (from-job-data (.getJobDataMap jd))})
+
+(defn from-trigger
+  [^Trigger t]
+  {:key (from-key (.getKey t))
+   :description (.getDescription t)
+   :calendar-name (.getCalendarName t)
+   :start-time (.getStartTime t)
+   :end-time (.getEndTime t)
+   :next-fire-time (.getNextFireTime t)
+   :previous-fire-time (.getPreviousFireTime t)})
+
 
 
 (defprotocol DateConversion
@@ -51,3 +75,25 @@
   org.joda.time.base.BaseDateTime
   (to-date [input]
     (.toDate input)))
+
+
+(defprotocol KeyCoercion
+  (^org.quartz.TriggerKey
+    to-trigger-key [input] "Converts a key to a TriggerKey instance")
+  (^org.quartz.JobKey
+    to-job-key [input] "Converts a key to a JobKey instance"))
+
+(extend-protocol KeyCoercion
+  org.quartz.TriggerKey
+  (to-trigger-key [input]
+    input)
+
+  org.quartz.JobKey
+  (to-job-key [input]
+    input)
+
+  String
+  (to-trigger-key [input]
+    (TriggerKey. input))
+  (to-job-key [input]
+    (JobKey. input)))
