@@ -13,7 +13,8 @@
 
 ;; Monger and other ClojureWerkz project integration extension point. MK.
 (defprotocol JobDataMapConversion
-  (to-job-data   [input] "Instantiates a JobDataMap instance from a Clojure map")
+  (^org.quartz.JobDataMap
+    to-job-data   [input] "Instantiates a JobDataMap instance from a Clojure map")
   (from-job-data [input] "Converts a JobDataMap to a Clojure map"))
 
 (extend-protocol JobDataMapConversion

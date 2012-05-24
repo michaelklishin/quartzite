@@ -77,6 +77,8 @@
                                     (s/with-interval-in-milliseconds 400))))]
     (sched/schedule job trigger)
     (is (sched/all-scheduled? jk tk))
+    (is (not (empty? (sched/get-triggers [tk]))))
+    (is (not (empty? (sched/get-jobs [jk]))))
     (let [t (sched/get-trigger tk)
           m (from-trigger t)]
       (is t)
@@ -88,7 +90,9 @@
     (is (nil? (sched/get-job (j/key "ab88fsyd7f" "k28s8d77s"))))
     (is (nil? (sched/get-trigger (t/key "ab88fsyd7f"))))
     (is (not (empty? (sched/get-trigger-keys (m/group-equals "tests")))))
+    (is (not (empty? (sched/get-matching-triggers (m/group-equals "tests")))))
     (is (not (empty? (sched/get-job-keys (m/group-equals "tests")))))
+    (is (not (empty? (sched/get-matching-jobs (m/group-equals "tests")))))
     (Thread/sleep 2000)
     (sched/unschedule-job tk)
     (is (not (sched/all-scheduled? tk jk)))

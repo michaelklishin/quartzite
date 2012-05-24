@@ -83,6 +83,6 @@
   (let [input  (doto (JobDataMap. { :keyword :clojure "string" "Hello, Quartz" :long 100 }))
         output (from-job-data input)]
     (is (map? output))
-    (is (= :clojure        (.get output :keyword)))
-    (is (= "Hello, Quartz" (.get output "string")))
-    (is (= 100             (.get output :long)))))
+    (is (= :clojure        (get output :keyword)))
+    (is (= "Hello, Quartz" (get output "string")))
+    (is (= 100             (get output :long)))))

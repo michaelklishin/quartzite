@@ -1,6 +1,14 @@
 ## Changes between Quartzite 1.0.0-rc4 and 1.0.0-rc5
 
-No changes yet.
+### clojurewerkz.quartzite.scheduler/get-triggers, /get-jobs, /get-matching-triggers, /get-matching-jobs
+
+`clojurewerkz.quartzite.scheduler/get-trigger` and `clojurewerkz.quartzite.scheduler/get-job` return trigger and job instances
+for the supplied collections of keys.
+
+`clojurewerkz.quartzite.scheduler/get-matching-triggers` function combines
+`clojurewerkz.quartzite.scheduler/get-trigger-keys` with `clojurewerkz.quartzite.scheduler/get-triggers`.
+
+`clojurewerkz.quartzite.scheduler/get-matching-jobs` works the same way for jobs.
 
 
 

@@ -158,29 +158,56 @@
   (.resumeAll ^Scheduler @*scheduler*))
 
 
+;;
+;; Querying
+;;
+
 (defn get-trigger
+  "Returns a Trigger instance for the given key."
   ([key]
      (.getTrigger ^Scheduler @*scheduler* (to-trigger-key key)))
   ([^String group ^String key]
      (.getTrigger ^Scheduler @*scheduler* (t/key group key))))
 
 (defn get-job
+  "Returns a JobDetail instance for the given key."
   ([key]
      (.getJobDetail ^Scheduler @*scheduler* (to-job-key key)))
   ([^String group ^String key]
      (.getJobDetail ^Scheduler @*scheduler* (j/key group key))))
 
+(defn get-triggers
+  "Returns a set of Trigger instances for the given collection of keys."
+  [keys]
+  (map get-trigger keys))
+
+(defn get-jobs
+  "Returns a set of JobDetail instances for the given collection of keys."
+  [keys]
+  (map get-job keys))
+
 (defn get-trigger-keys
-  "Returns a set of keys that match the given group matcher. See functions in the clojurewerkz.quartzite.matchers.*
+  "Returns a set of keys that match the given group matcher. Commonly used with the functions in the clojurewerkz.quartzite.matchers.*
    namespace."
   [^GroupMatcher gm]
   (.getTriggerKeys ^Scheduler @*scheduler* gm))
 
 (defn get-job-keys
-  "Returns a set of keys that match the given group matcher. See functions in the clojurewerkz.quartzite.matchers.*
+  "Returns a set of keys that match the given group matcher. Commonly used with the functions in the clojurewerkz.quartzite.matchers.*
    namespace."
   [^GroupMatcher gm]
   (.getJobKeys ^Scheduler @*scheduler* gm))
+
+(def ^{:doc "Returns a set of Trigger instances with keys that match the given group matcher.
+             Commonly used with the functions in the clojurewerkz.quartzite.matchers.* namespace."}
+  get-matching-triggers
+  (comp get-triggers get-trigger-keys))
+
+(def ^{:doc "Returns a set of JobDetail instances with keys that match the given group matcher.
+             Commonly used with the functions in the clojurewerkz.quartzite.matchers.* namespace."}
+  get-matching-jobs
+  (comp get-jobs get-job-keys))
+
 
 
 (defprotocol KeyPredicates
