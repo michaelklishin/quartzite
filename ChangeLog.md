@@ -1,3 +1,8 @@
+## Changes between Quartzite 1.0.0-rc5 and 1.0.0-rc6
+
+No changes yet.
+
+
 ## Changes between Quartzite 1.0.0-rc4 and 1.0.0-rc5
 
 ### clojurewerkz.quartzite.scheduler/get-triggers, /get-jobs, /get-matching-triggers, /get-matching-jobs
