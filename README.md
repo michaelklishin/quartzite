@@ -15,6 +15,8 @@ Once documentation guides are written, we will update this document.
 
  * Support all commonly used Quartz features but follow the 80/20 rule
  * Be (reasonably) idiomatic but easy to understand for people familiar with Quartz
+ * Be [well documented](http://clojurequartz.info/)
+ * Be [well tested](https://github.com/michaelklishin/quartzite/tree/master/test/clojurewerkz/quartzite/test)
  * Integrate with libraries like JodaTime where appropriate, like [Monger, a modern Clojure MongoDB client](https://github.com/michaelklishin/monger) does
  * Not a half-assed effort: libraries should be well maintained and test-driven or not be open sourced in the first place
 
@@ -37,13 +39,6 @@ Once documentation guides are written, we will update this document.
 Quartzite is built from the ground up for Clojure 1.3 and up.
 
 
-## Community
-
-[Quartzite has a mailing list](https://groups.google.com/group/clojure-quartz). Feel free to join it and ask any questions you may have.
-
-To subscribe for announcements of releases, important changes and so on, please follow [@ClojureWerkz](https://twitter.com/#!/clojurewerkz) on Twitter.
-
-
 ## Maven Artifacts
 
 With Leiningen:
@@ -59,31 +54,28 @@ With Maven:
     </dependency>
 
 
-### Snapshots
 
-If you are comfortable with using snapshots, snapshot artifacts are [released to Clojars](https://clojars.org/clojurewerkz/quartzite) every 24 hours.
+## Getting Started, Documentation
 
-With Leiningen:
+Please refer to the [Getting Started with Clojure and Quartz](http://clojurequartz.info/articles/getting_started.html).
 
-    [clojurewerkz/quartzite "1.0.0-SNAPSHOT"]
+[Quartzite documentation guides](http://clojurequartz.info/) are very young and not fully complete but are being improved week after week.
 
 
-With Maven:
 
-    <dependency>
-      <groupId>clojurewerkz</groupId>
-      <artifactId>quartzite</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
+## Community
 
-New snapshots are released to [clojars.org](https://clojars.org/clojurewerkz/quartzite) every few days.
+[Quartzite has a mailing list](https://groups.google.com/group/clojure-quartz). Feel free to join it and ask any questions you may have.
+
+To subscribe for announcements of releases, important changes and so on, please follow [@ClojureWerkz](https://twitter.com/#!/clojurewerkz) on Twitter.
+
 
 
 
 ## Monger Is a ClojureWerkz Project
 
 Quartzite is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org), together with
-[Neocons](https://github.com/michaelklishin/neocons), [Langohr](https://github.com/michaelklishin/langohr), [Elastisch](https://github.com/clojurewerkz/elastisch), [Welle](https://github.com/michaelklishin/welle), [Monger](https://github.com/michaelklishin/monger) and several others.
+[Monger](http://clojuremongodb.info), [Welle](http://clojureriak.info), [Neocons](https://github.com/michaelklishin/neocons), [Langohr](https://github.com/michaelklishin/langohr), [Elastisch](https://github.com/clojurewerkz/elastisch) and several others.
 
 
 
