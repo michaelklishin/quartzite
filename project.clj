@@ -14,8 +14,7 @@
              :1.5 {:dependencies [[org.clojure/clojure "1.5.0-master-SNAPSHOT"]]}
              :dev {:resource-paths ["test/resources"]
                    :dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
-                                  [org.slf4j/slf4j-simple    "1.6.2"]
-                                  [org.slf4j/slf4j-api       "1.6.2"]]}}
+                                  [org.slf4j/slf4j-log4j12   "1.6.4"]]}}
   :aliases {"all" ["with-profile" "dev:dev,1.4:dev,1.5"]
             "ci"  ["with-profile" "dev:dev,1.4"]}
   :repositories {"sonatype" {:url "http://oss.sonatype.org/content/repositories/releases"
