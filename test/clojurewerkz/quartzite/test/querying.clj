@@ -32,18 +32,18 @@
                      (calin/with-interval-in-hours 4)))))
 
 (deftest test-job-and-trigger-group-names
-  (let [job-1 (make-no-op-job "job-in-test-trigger-group-names" "test-job-1")
-        tk-1  (make-no-op-trigger job-1 "trigger-1-in-test-trigger-group-names" "test-trigger-1")
-        job-2 (make-no-op-job "job-in-test-trigger-group-names" "test-job-2")
-        tk-2  (make-no-op-trigger job-2 "trigger-2-in-test-trigger-group-names" "test-trigger-2")]
+  (let [job1 (make-no-op-job "job-in-test-trigger-group-names" "test-job1")
+        tk1  (make-no-op-trigger job1 "trigger-1-in-test-trigger-group-names" "test-trigger-1")
+        job2 (make-no-op-job "job-in-test-trigger-group-names" "test-job2")
+        tk2  (make-no-op-trigger job2 "trigger-2-in-test-trigger-group-names" "test-trigger-2")]
 
-    (sched/schedule job-1 tk-1)
-    (sched/schedule job-2 tk-2)
+    (sched/schedule job1 tk1)
+    (sched/schedule job2 tk2)
 
     (let [job-group-names (sched/get-job-group-names)]
       (is (= 2 (count job-group-names)))
-      (is (= "test-job-1" (first job-group-names)))
-      (is (= "test-job-2" (second job-group-names))))
+      (is (= "test-job1" (first job-group-names)))
+      (is (= "test-job2" (second job-group-names))))
 
     (let [trigger-group-names (sched/get-trigger-group-names)]
       (is (= 2 (count trigger-group-names)))
