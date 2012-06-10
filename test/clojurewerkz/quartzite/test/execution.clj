@@ -1,6 +1,7 @@
 (ns clojurewerkz.quartzite.test.execution
   (:use clojure.test
         clojurewerkz.quartzite.conversion
+        clojurewerkz.quartzite.test.helper
         [clj-time.core :only [now secs from-now]])
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
@@ -13,9 +14,7 @@
 
 (println (str "Using Clojure version " *clojure-version*))
 
-(sched/initialize)
-(sched/start)
-
+(wrap-fixtures)
 
 ;;
 ;; Case 1
@@ -27,8 +26,6 @@
   org.quartz.Job
   (execute [this ctx]
     (.countDown ^CountDownLatch latch1)))
-
-
 
 (deftest test-basic-periodic-execution-with-a-job-defined-using-defrecord
   (is (sched/started?))

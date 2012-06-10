@@ -162,6 +162,15 @@
 ;; Querying
 ;;
 
+
+(defn get-job-group-names
+  []
+  (.getJobGroupNames ^Scheduler @*scheduler*))
+
+(defn get-trigger-group-names
+  []
+  (.getTriggerGroupNames ^Scheduler @*scheduler*))
+
 (defn get-trigger
   "Returns a Trigger instance for the given key."
   ([key]
