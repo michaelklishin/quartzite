@@ -1,6 +1,13 @@
-## Changes between Quartzite 1.0.0-rc5 and 1.0.0-rc6
+## Changes between Quartzite 1.0.0-rc6 and 1.0.0-rc7
 
 No changes yet.
+
+
+## Changes between Quartzite 1.0.0-rc5 and 1.0.0-rc6
+
+Added `clojurewerkz.quartzite.scheduler/get-job-group-names` and `clojurewerkz.quartzite.scheduler/get-trigger-group-names`, that
+could be used to retrieve lists of jobs and triggers.
+
 
 
 ## Changes between Quartzite 1.0.0-rc4 and 1.0.0-rc5
