@@ -164,10 +164,12 @@
 
 
 (defn get-job-group-names
+  "Get the names of all known JobDetail groups."
   []
   (.getJobGroupNames ^Scheduler @*scheduler*))
 
 (defn get-trigger-group-names
+  "Get the names of all known Trigger  groups."
   []
   (.getTriggerGroupNames ^Scheduler @*scheduler*))
 
