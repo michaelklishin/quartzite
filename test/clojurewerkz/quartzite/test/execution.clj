@@ -203,7 +203,7 @@
     ;; with start-now policty some executions
     ;; manages to get through. In part this test is supposed
     ;; to demonstrate it as much as test unscheduling/pausing functions. MK.
-    (is (< @counter5 10))))
+    (is (< @counter5 15))))
 
 
 ;;
