@@ -258,3 +258,47 @@
     (is (not (sched/maybe-schedule job trigger)))
     (Thread/sleep 7000)
     (is (= 3 @counter7))))
+
+;;
+;; Case 8. Stateful jobs.
+;;
+
+(def latch8 (CountDownLatch. 2))
+
+; job takes longer than interval
+(j/def-stateful-job JobF
+  [ctx]
+  (Thread/sleep 1000)
+  (.countDown ^CountDownLatch latch8))
+
+(deftest test-stateful-job
+  (is (sched/started?))
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job8"     "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger8" "tests")
+        job     (j/build
+                 (j/of-type clojurewerkz.quartzite.test.execution.JobF)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution.job8" "tests"))
+        trigger  (t/build
+                  (t/start-now)
+                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger8" "tests")
+                  (t/with-description "just a trigger")
+                  (t/with-schedule (s/schedule
+                                    (s/with-repeat-count 2)
+                                    (s/with-interval-in-milliseconds 200))))
+        start (System/currentTimeMillis)]
+    (sched/schedule job trigger)
+    (is (sched/all-scheduled? jk tk))
+    (is (not (empty? (sched/get-triggers [tk]))))
+    (is (not (empty? (sched/get-jobs [jk]))))
+    (let [t (sched/get-trigger tk)
+          m (from-trigger t)]
+      (is t)
+      (is (:key m))
+      (is (:description m))
+      (is (:start-time m))
+      (is (:next-fire-time m)))
+    (is (sched/get-job jk))
+    (is (not (empty? (sched/get-job-keys (m/group-equals "tests")))))
+    (.await ^CountDownLatch latch8)
+    (let [time-to-run (- (System/currentTimeMillis) start)]
+      (is (>= time-to-run 2000)))))

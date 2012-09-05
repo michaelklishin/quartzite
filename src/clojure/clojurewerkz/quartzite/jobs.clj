@@ -75,3 +75,10 @@
        org.quartz.Job
      (execute [this ~@args]
        ~@body)))
+
+(defmacro def-stateful-job
+  [jtype args & body]
+  `(defrecord ~jtype []
+       org.quartz.StatefulJob
+     (execute [this ~@args]
+       ~@body)))
