@@ -1,6 +1,11 @@
-## Changes between Quartzite 1.0.0-rc6 and 1.0.0-rc7
+## Changes between Quartzite 1.0.0-rc6 and 1.0.0
 
-No changes yet.
+### clojurewerkz.quartzite.jobs/def-stateful-job
+
+`clojurewerkz.quartzite.jobs/def-stateful-job` is a new macro for defining stateful jobs. It has exactly
+the same API signature as as `clojurewerkz.quartzite.jobs/defjob`.
+
+Contributed by dlebrero.
 
 
 ## Changes between Quartzite 1.0.0-rc5 and 1.0.0-rc6
