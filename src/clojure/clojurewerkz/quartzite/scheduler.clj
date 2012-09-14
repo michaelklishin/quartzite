@@ -108,12 +108,12 @@
 
 
 (defn pause-job
-  "Pauses a job with given key"
+  "Pauses a job with the given key"
   [^JobKey key]
   (.pauseJob ^Scheduler @*scheduler* key))
 
 (defn resume-job
-  "Resumes a job with given key"
+  "Resumes a job with the given key"
   [^JobKey key]
   (.resumeJob ^Scheduler @*scheduler* key))
 
@@ -128,12 +128,12 @@
   (.resumeJobs ^Scheduler @*scheduler* matcher))
 
 (defn pause-trigger
-  "Pauses a trigger with given key"
+  "Pauses a trigger with the given key"
   [^TriggerKey key]
   (.pauseTrigger ^Scheduler @*scheduler* key))
 
 (defn resume-trigger
-  "Resumes a trigger with given key"
+  "Resumes a trigger with the given key"
   [^TriggerKey key]
   (.resumeTrigger ^Scheduler @*scheduler* key))
 
