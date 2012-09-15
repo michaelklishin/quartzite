@@ -84,21 +84,33 @@
   [^JobDetail job-detail ^Trigger trigger]
   (.scheduleJob ^Scheduler @*scheduler* job-detail trigger))
 
-(defn unschedule-job
+(defn delete-trigger
   "Removes the indicated trigger from the scheduler. If the related job does not have any other triggers,
    and the job is not durable, then the job will also be deleted"
   [^TriggerKey key]
   (.unscheduleJob ^Scheduler @*scheduler* key))
+
+(defn ^{:deprecated true} unschedule-job
+  "Removes the indicated trigger from the scheduler. If the related job does not have any other triggers,
+   and the job is not durable, then the job will also be deleted"
+  [^TriggerKey key]
+  (delete-trigger key))
 
 (defn delete-job
   "Deletes the identified job and all triggers associated with it from the scheduler"
   [^JobKey key]
   (.deleteJob ^Scheduler @*scheduler* key))
 
-(defn unschedule-jobs
+(defn delete-triggers
   "Remove all of the indicated triggers from the scheduler"
   [^List keys]
   (.unscheduleJobs ^Scheduler @*scheduler* keys))
+
+(defn ^{:deprecated true} unschedule-jobs
+  "Remove all of the indicated triggers from the scheduler"
+  [^List keys]
+  (delete-triggers keys))
+
 
 (defn delete-jobs
   "Remove all of the indicated jobs (and associated triggers) from the scheduler. Bulk equivalent of delete-job"

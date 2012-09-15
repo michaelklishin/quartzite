@@ -1,5 +1,13 @@
 ## Changes between Quartzite 1.0.0-rc6 and 1.0.0
 
+### Renamed Functions
+
+`clojurewerkz.quartzite.scheduler/unschedule-job` was renamed to `clojurewerkz.quartzite.scheduler/delete-trigger`,
+`clojurewerkz.quartzite.scheduler/unschedule-jobs` was renamed to `clojurewerkz.quartzite.scheduler/delete-triggers`.
+
+The old functions are deprecated but not removed.
+
+
 ### Clojure 1.4 By Default
 
 Quartzite now depends on `org.clojure/clojure` version `1.4.0`. It is still compatible with Clojure 1.3 and if your `project.clj` depends
