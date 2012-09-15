@@ -1,6 +1,14 @@
-## Changes between Quartzite 1.0.0 and 1.0.1
+## Changes between Quartzite 1.0.1 and 1.0.2
 
 No changes yet.
+
+
+## Changes between Quartzite 1.0.0 and 1.0.1
+
+### "Do Nothing" Instruction Support for Daily Interval Schedule
+
+`clojurewerkz.quartzite.schedule.daily-interval/with-misfire-handling-instruction-do-nothing` was
+missing from the DSL.
 
 
 ## Changes between Quartzite 1.0.0-rc6 and 1.0.0
