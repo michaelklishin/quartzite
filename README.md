@@ -43,14 +43,14 @@ Quartzite is built from the ground up for Clojure 1.3 and up.
 
 With Leiningen:
 
-    [clojurewerkz/quartzite "1.0.0-rc6"]
+    [clojurewerkz/quartzite "1.0.0"]
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
       <artifactId>quartzite</artifactId>
-      <version>1.0.0-rc6</version>
+      <version>1.0.0</version>
     </dependency>
 
 
@@ -59,7 +59,7 @@ With Maven:
 
 Please refer to the [Getting Started with Clojure and Quartz](http://clojurequartz.info/articles/getting_started.html).
 
-[Quartzite documentation guides](http://clojurequartz.info/) are very young and not fully complete but are being improved week after week.
+[Quartzite documentation guides](http://clojurequartz.info/) are not fully complete but cover most of the functionality.
 
 
 
@@ -72,7 +72,7 @@ To subscribe for announcements of releases, important changes and so on, please 
 
 
 
-## Monger Is a ClojureWerkz Project
+## Quartzite Is a ClojureWerkz Project
 
 Quartzite is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org), together with
 [Monger](http://clojuremongodb.info), [Welle](http://clojureriak.info), [Neocons](https://github.com/michaelklishin/neocons), [Langohr](https://github.com/michaelklishin/langohr), [Elastisch](https://github.com/clojurewerkz/elastisch) and several others.
