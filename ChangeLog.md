@@ -1,3 +1,8 @@
+## Changes between Quartzite 1.0.0 and 1.0.1
+
+No changes yet.
+
+
 ## Changes between Quartzite 1.0.0-rc6 and 1.0.0
 
 ### Renamed Functions
