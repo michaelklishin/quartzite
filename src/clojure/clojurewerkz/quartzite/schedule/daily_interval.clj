@@ -88,6 +88,9 @@
   [^DailyTimeIntervalScheduleBuilder dtisb]
   (.withMisfireHandlingInstructionFireAndProceed dtisb))
 
+(defn with-misfire-handling-instruction-do-nothing
+  [^DailyTimeIntervalScheduleBuilder cisb]
+  (.withMisfireHandlingInstructionDoNothing cisb))
 
 
 
