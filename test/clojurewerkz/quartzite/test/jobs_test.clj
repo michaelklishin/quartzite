@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.jobs
+(ns clojurewerkz.quartzite.test.jobs-test
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
         [clojurewerkz.quartzite jobs conversion])
@@ -44,7 +44,7 @@
 (deftest test-job-builder-dsl-example3
   (let [job (build (with-identity    "basic.job3" "basic.group3")
                    (with-description "A description")
-                   (of-type clojurewerkz.quartzite.test.jobs.AJob))]
+                   (of-type AJob))]
    (.getJobClass job)))
 
 (deftest test-job-builder-dsl-example4

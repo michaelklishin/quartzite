@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.stateful
+(ns clojurewerkz.quartzite.test.stateful-test
   (:use clojure.test
         clojurewerkz.quartzite.conversion
         clojurewerkz.quartzite.test.helper
@@ -34,7 +34,7 @@
   (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job1"     "tests")
         tk      (t/key "clojurewerkz.quartzite.test.execution.trigger1" "tests")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.stateful.JobA)
+                 (j/of-type JobA)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job1" "tests"))
         trigger  (t/build
                   (t/start-now)
@@ -82,7 +82,7 @@
   (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job2"     "tests")
         tk      (t/key "clojurewerkz.quartzite.test.execution.trigger2" "tests")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.stateful.JobB)
+                 (j/of-type JobB)
                  (j/with-identity "clojurewerkz.quartzite.test.execution.job2" "tests"))
         trigger  (t/build
                   (t/start-now)

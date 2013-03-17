@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.querying
+(ns clojurewerkz.quartzite.test.querying-test
   (:use clojure.test
         clojurewerkz.quartzite.test.helper)
   (:require [clojurewerkz.quartzite.scheduler :as sched]

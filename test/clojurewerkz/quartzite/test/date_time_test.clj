@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.date-time
+(ns clojurewerkz.quartzite.test.date-time-test
   (:use clojurewerkz.quartzite.date-time
         clojure.test
         [clj-time.core :only [now interval minus plus years months weeks days hours minutes from-now after? within? ago date-time]])

@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.execution
+(ns clojurewerkz.quartzite.test.execution-test
   (:use clojure.test
         clojurewerkz.quartzite.conversion
         clojurewerkz.quartzite.test.helper
@@ -30,15 +30,15 @@
 (deftest test-basic-periodic-execution-with-a-job-defined-using-defrecord
   (is (sched/started?))
   (let [job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobA)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job1" "tests"))
+                 (j/of-type JobA)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job1" "tests"))
         trigger  (t/build
                   (t/start-now)
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-milliseconds 200))))]
     (sched/schedule job trigger)
-    (let [j (sched/get-job (j/key "clojurewerkz.quartzite.test.execution.job1" "tests"))
+    (let [j (sched/get-job (j/key "clojurewerkz.quartzite.test.execution-test.job1" "tests"))
           m (from-job-detail j)]
       (is j)
       (is (:key m))
@@ -60,14 +60,14 @@
 
 (deftest test-unscheduling-of-a-job-defined-using-defjob
   (is (sched/started?))
-  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job2"     "tests")
-        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger2" "tests")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution-test.job2"     "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution-test.trigger2" "tests")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobB)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job2" "tests"))
+                 (j/of-type JobB)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job2" "tests"))
         trigger  (t/build
                   (t/start-now)
-                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger2" "tests")
+                  (t/with-identity "clojurewerkz.quartzite.test.execution-test.trigger2" "tests")
                   (t/with-description "just a trigger")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
@@ -110,14 +110,14 @@
 
 (deftest test-manual-triggering-of-a-job-defined-using-defjob
   (is (sched/started?))
-  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job3" "tests")
-        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger3" "tests")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution-test.job3" "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution-test.trigger3" "tests")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobC)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job3" "tests"))
+                 (j/of-type JobC)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job3" "tests"))
         trigger  (t/build
                   (t/start-now)
-                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger3" "tests")
+                  (t/with-identity "clojurewerkz.quartzite.test.execution-test.trigger3" "tests")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-seconds 2))))]
@@ -140,15 +140,15 @@
 
 (deftest test-job-data-access
   (is (sched/started?))
-  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job4" "tests")
-        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution-test.job4" "tests")
+        tk      (t/key "clojurewerkz.quartzite.test.execution-test.trigger4" "tests")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobD)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job4" "tests")
+                 (j/of-type JobD)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job4" "tests")
                  (j/using-job-data { "job-key" "job-value" }))
         trigger  (t/build
                   (t/start-now)
-                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger4" "tests")
+                  (t/with-identity "clojurewerkz.quartzite.test.execution-test.trigger4" "tests")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-seconds 2))))]
@@ -171,15 +171,15 @@
 
 (deftest test-job-pausing-resuming-and-unscheduling
   (is (sched/started?))
-  (let [jk      (j/key "clojurewerkz.quartzite.test.execution.job5" "tests.jobs.unscheduling")
-        tk      (t/key "clojurewerkz.quartzite.test.execution.trigger5" "tests.jobs.unscheduling")
+  (let [jk      (j/key "clojurewerkz.quartzite.test.execution-test.job5" "tests.jobs.unscheduling")
+        tk      (t/key "clojurewerkz.quartzite.test.execution-test.trigger5" "tests.jobs.unscheduling")
         job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobE)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job5" "tests.triggers.unscheduling")
+                 (j/of-type JobE)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job5" "tests.triggers.unscheduling")
                  (j/using-job-data { "job-key" 2 }))
         trigger  (t/build
                   (t/start-now)
-                  (t/with-identity "clojurewerkz.quartzite.test.execution.trigger5" "tests.triggers.unscheduling")
+                  (t/with-identity "clojurewerkz.quartzite.test.execution-test.trigger5" "tests.triggers.unscheduling")
                   (t/with-schedule (s/schedule
                                     (s/with-repeat-count 10)
                                     (s/with-interval-in-seconds 1))))]
@@ -219,8 +219,8 @@
 (deftest test-basic-periodic-execution-with-calendar-interval-schedule
   (is (sched/started?))
   (let [job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobF)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job6" "tests"))
+                 (j/of-type JobF)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job6" "tests"))
         trigger  (t/build
                   (t/start-now)
                   (t/with-schedule (calin/schedule
@@ -243,8 +243,8 @@
 (deftest test-double-scheduling
   (is (sched/started?))
   (let [job     (j/build
-                 (j/of-type clojurewerkz.quartzite.test.execution.JobG)
-                 (j/with-identity "clojurewerkz.quartzite.test.execution.job7" "tests"))
+                 (j/of-type JobG)
+                 (j/with-identity "clojurewerkz.quartzite.test.execution-test.job7" "tests"))
         trigger  (t/build
                   (t/start-at (-> 2 secs from-now))
                   (t/with-schedule (calin/schedule

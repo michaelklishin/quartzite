@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.triggers
+(ns clojurewerkz.quartzite.test.triggers-test
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
         [clojurewerkz.quartzite triggers conversion]
