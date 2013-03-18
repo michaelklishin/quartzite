@@ -41,16 +41,18 @@ Quartzite is built from the ground up for Clojure 1.3 and up.
 
 ## Maven Artifacts
 
+### The Most Recent Release
+
 With Leiningen:
 
-    [clojurewerkz/quartzite "1.0.1"]
+    [clojurewerkz/quartzite "1.1.0-beta1"]
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
       <artifactId>quartzite</artifactId>
-      <version>1.0.1</version>
+      <version>1.1.0-beta1</version>
     </dependency>
 
 
@@ -58,9 +60,9 @@ With Maven:
 ## Getting Started, Documentation
 
 Please refer to the [Getting Started with Clojure and Quartz](http://clojurequartz.info/articles/getting_started.html).
-
 [Quartzite documentation guides](http://clojurequartz.info/) are not fully complete but cover most of the functionality.
 
+Quality [Clojure documentation](http://clojure-doc.org) is available elsewhere.
 
 
 ## Community
