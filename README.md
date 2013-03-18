@@ -36,7 +36,8 @@ Once documentation guides are written, we will update this document.
 
 ## Supported Clojure versions
 
-Quartzite is built from the ground up for Clojure 1.3 and up.
+Quartzite is built from the ground up for Clojure 1.3 and up. The most recent release is always
+recommended.
 
 
 ## Maven Artifacts
