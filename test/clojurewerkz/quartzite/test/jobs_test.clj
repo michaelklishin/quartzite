@@ -72,17 +72,17 @@
 ;;
 
 (deftest test-conversion-of-clojure-maps-to-job-data-maps
-  (let [input  { :long 100 "string" "Hello, Quartz" :keyword :clojure }
+  (let [input  {:long 100 "string" "Hello, Quartz" :keyword :clojure}
         output (to-job-data input)]
     (is (instance? JobDataMap output))
-    (is (= :clojure        (.get output :keyword)))
+    (is (= :clojure        (.get output "keyword")))
     (is (= "Hello, Quartz" (.get output "string")))
-    (is (= 100             (.get output :long)))))
+    (is (= 100             (.get output "long")))))
 
 (deftest test-conversion-of-job-data-maps-to-clojure-maps
-  (let [input  (doto (JobDataMap. { :keyword :clojure "string" "Hello, Quartz" :long 100 }))
+  (let [input  (JobDataMap. {:keyword :clojure "string" "Hello, Quartz" :long 100})
         output (from-job-data input)]
     (is (map? output))
-    (is (= :clojure        (get output :keyword)))
+    (is (= :clojure        (get output "keyword")))
     (is (= "Hello, Quartz" (get output "string")))
-    (is (= 100             (get output :long)))))
+    (is (= 100             (get output "long")))))

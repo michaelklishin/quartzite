@@ -1,5 +1,6 @@
 (ns clojurewerkz.quartzite.conversion
   (:refer-clojure :exclude [key])
+  (:require [clojure.walk :as wlk])
   (:import [org.quartz JobDataMap JobExecutionContext]
            org.quartz.utils.Key
            [org.quartz TriggerKey JobKey]
@@ -19,13 +20,13 @@
 
 (extend-protocol JobDataMapConversion
   IPersistentMap
-  (to-job-data [^java.lang.IPersistentMap input]
-    (JobDataMap. ^Map input))
+  (to-job-data [^clojure.lang.IPersistentMap input]
+    (JobDataMap. ^Map (wlk/stringify-keys input)))
 
 
   JobDataMap
   (from-job-data [^JobDataMap input]
-    (into {} input))
+    (wlk/stringify-keys (into {} input)))
 
   JobExecutionContext
   (from-job-data [^JobExecutionContext input]

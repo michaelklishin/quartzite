@@ -83,8 +83,8 @@
                        (start-now)
                        (for-job "collect.underpants" "business")
                        (using-job-data { :who "Gnomes" :what "Know about business" }))]
-    (is (= (to-job-data { :who "Gnomes" :what "Know about business" }) (.getJobDataMap trigger)))
-    (is (= { :who "Gnomes" :what "Know about business" } (from-job-data (.getJobDataMap trigger))))))
+    (is (= (to-job-data { "who" "Gnomes" "what" "Know about business" }) (.getJobDataMap trigger)))
+    (is (= { "who" "Gnomes" "what" "Know about business" } (from-job-data (.getJobDataMap trigger))))))
 
 (deftest test-job-builder-dsl-example10
   (let [tk  (key "basic.trigger10" "basic.group10")

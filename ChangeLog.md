@@ -1,5 +1,15 @@
 ## Changes between Quartzite 1.0.0 and 1.1.0
 
+`1.1.x` has one **breaking API change** in how it converts job context
+maps to `JobDetailContext` in Quartz.
+
+### Stringified Keys in JobDetailContext
+
+Quartzite will now stringify all keys in Clojure maps converted to job detail context
+instances. This is due to the fact that some Quartz internals implicitly assume JobDetailContext
+keys are always strings. 
+
+
 ### Clojure 1.5 By Default
 
 Quartzite now depends on `org.clojure/clojure` version `1.5.0`. It is
