@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.schedule.daily-interval
+(ns clojurewerkz.quartzite.test.schedule.daily-interval-test
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
         [clojurewerkz.quartzite.schedule daily-interval])

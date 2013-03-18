@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.schedule.cron
+(ns clojurewerkz.quartzite.test.schedule.cron-test
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
         [clojurewerkz.quartzite.schedule cron]

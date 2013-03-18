@@ -1,4 +1,4 @@
-(ns clojurewerkz.quartzite.test.schedule.simple
+(ns clojurewerkz.quartzite.test.schedule.simple-test
   (:refer-clojure :exclude [key])
   (:use [clojure.test]
         [clojurewerkz.quartzite.schedule simple])
