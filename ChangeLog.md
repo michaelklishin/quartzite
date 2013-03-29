@@ -3,6 +3,17 @@
 `1.1.x` has one **breaking API change** in how it converts job context
 maps to `JobDetailContext` in Quartz.
 
+### clj-time upgraded to 0.5.0
+
+[clj-time](https://github.com/seancorfield/clj-time) dependency has been upgraded to version 0.5.0, uses
+[Joda Time 2.2](https://github.com/JodaOrg/joda-time/blob/master/RELEASE-NOTES.txt).
+
+`clojurewerkz.quartzite.date-time` functions were pushed upstream to `clj-time`, find them in
+`clj-time.core` and `clj-time.periodic`.
+
+`clojurewerkz.quartzite.date-time` will be **removed** from Quartzite in the release following
+`1.1.0`.
+
 ### Stringified Keys in JobDetailContext
 
 Quartzite will now stringify all keys in Clojure maps converted to job detail context
