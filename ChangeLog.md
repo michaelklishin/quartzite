@@ -1,3 +1,9 @@
+## Changes between Quartzite 1.1.0 and 1.2.0
+
+No changes yet.
+
+
+
 ## Changes between Quartzite 1.0.0 and 1.1.0
 
 `1.1.x` has one **breaking API change** in how it converts job context
