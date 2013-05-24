@@ -49,3 +49,19 @@
       (is (= 2 (count trigger-group-names)))
       (is (= "test-trigger-1" (first trigger-group-names)))
       (is (= "test-trigger-2" (second trigger-group-names))))))
+
+
+(deftest test-get-triggers-of-job
+  (let [job-id "job-in-test-get-triggers-of-job"
+        job-group "test-job1"
+        job1 (make-no-op-job job-id job-group)
+        trig-id "trigger-1-in-test-get-triggers-of-job"
+        trig-group "test-trigger-1"
+        tk1  (make-no-op-trigger job1 trig-id trig-group)]
+
+    (sched/schedule job1 tk1)
+
+    (let [jk (j/key job-id job-group)
+          triggers (sched/get-triggers-of-job jk)]
+      (is (= 1 (count triggers)))
+      (is (.equals (first triggers) tk1)))))

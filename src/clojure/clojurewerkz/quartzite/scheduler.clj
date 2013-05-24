@@ -77,12 +77,25 @@
   []
   (.isShutdown ^Scheduler @*scheduler*))
 
-
 (defn schedule
   "Adds given job to the scheduler and associates it with given trigger.
    Trigger controls job execution schedule, initial execution time and other characteristics"
   [^JobDetail job-detail ^Trigger trigger]
   (.scheduleJob ^Scheduler @*scheduler* job-detail trigger))
+
+(defn add-job
+  "Adds given job to the scheduler with no associated trigger"
+  ([^JobDetail job-detail ^Boolean replace]
+     (.addJob ^Scheduler @*scheduler* job-detail replace))
+  
+  ([^JobDetail job-detail]
+     (add-job job-detail false)))
+
+(defn add-trigger
+  "Adds given trigger to the scheduled job with which the trigger has been associated"
+  [^Trigger trigger]
+  (.scheduleJob ^Scheduler @*scheduler* trigger))
+
 
 (defn delete-trigger
   "Removes the indicated trigger from the scheduler. If the related job does not have any other triggers,
@@ -198,6 +211,11 @@
      (.getJobDetail ^Scheduler @*scheduler* (to-job-key key)))
   ([^String group ^String key]
      (.getJobDetail ^Scheduler @*scheduler* (j/key group key))))
+
+(defn get-triggers-of-job
+  "Returns a set of Trigger instances for the given collection of keys."
+  [key]
+  (.getTriggersOfJob ^Scheduler @*scheduler* (to-job-key key)))
 
 (defn get-triggers
   "Returns a set of Trigger instances for the given collection of keys."
