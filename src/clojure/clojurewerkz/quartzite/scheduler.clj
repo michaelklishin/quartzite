@@ -89,7 +89,7 @@
      (.addJob ^Scheduler @*scheduler* job-detail replace))
   
   ([^JobDetail job-detail]
-     (add-job job-detail true)))
+     (add-job job-detail false)))
 
 (defn add-trigger
   "Adds given trigger to the scheduled job with which the trigger has been associated"
