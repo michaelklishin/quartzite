@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.scheduler
-  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager]
+  (:import [org.quartz Scheduler JobDetail JobKey Trigger TriggerKey SchedulerListener ListenerManager JobExecutionContext]
            org.quartz.impl.matchers.GroupMatcher
            java.util.List)
   (:require [clojurewerkz.quartzite.jobs :as j]
@@ -226,6 +226,17 @@
   "Returns a set of JobDetail instances for the given collection of keys."
   [keys]
   (map get-job keys))
+
+(defn get-currently-executing-jobs
+  "Returns a set of JobExecutionContext that represent the currently executing jobs for a given key"
+  [key]
+  (filter #(= (.. ^JobExecutionContext % (getJobDetail) (getKey)) (j/key key))
+          (.getCurrentlyExecutingJobs ^Scheduler @*scheduler*)))
+
+(defn currently-executing-job?
+  "Returns true if there is currently executing job for the given key"
+  [key]
+  (if (seq (get-currently-executing-jobs key)) true false))
 
 (defn get-trigger-keys
   "Returns a set of keys that match the given group matcher. Commonly used with the functions in the clojurewerkz.quartzite.matchers.*
