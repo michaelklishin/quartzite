@@ -15,6 +15,10 @@
 (j/defjob NoOpJob
   [ctx])
 
+(j/defjob LongRunningJob
+  [ctx]
+  (Thread/sleep 5000))
+
 (defn make-no-op-job
   [name job-group]
   (j/build
@@ -26,10 +30,24 @@
   (t/build
    (t/start-now)
    (t/with-identity name job-group)
-   (t/with-description "descroption")
+   (t/with-description "description")
    (t/for-job job)
    (t/with-schedule (calin/schedule
                      (calin/with-interval-in-hours 4)))))
+
+(defn make-long-running-job
+  [id]
+  (j/build
+   (j/of-type LongRunningJob)
+   (j/with-identity (j/key id))))
+
+(defn make-long-running-job-trigger
+  [job id]
+  (t/build
+   (t/start-now)
+   (t/with-identity (t/key id))
+   (t/with-description "description")
+   (t/for-job job)))
 
 (deftest test-job-and-trigger-group-names
   (let [job1 (make-no-op-job "job-in-test-trigger-group-names" "test-job1")
@@ -65,3 +83,16 @@
           triggers (sched/get-triggers-of-job jk)]
       (is (= 1 (count triggers)))
       (is (.equals (first triggers) tk1)))))
+
+(deftest test-get-executing-jobs
+  (let [job-id "long-job-1"
+        job1 (make-long-running-job job-id)
+        trig-id "long-trigger-1"
+        tk1 (make-long-running-job-trigger job1 trig-id)]
+
+    (sched/schedule job1 tk1)
+
+    (Thread/sleep 1000) ; wait for the job to be scheduled and start running before querying
+
+    (is (= 1 (count (sched/get-currently-executing-jobs "long-job-1"))))
+    (is (sched/currently-executing-job? "long-job-1"))))

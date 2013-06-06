@@ -1,7 +1,7 @@
 ## Changes between Quartzite 1.1.0 and 1.2.0
 
-No changes yet.
-
+* `clojurewerkz.quartzite.scheduler/get-currently-executing-jobs` Returns a set of currently executing jobs
+* `clojurewerkz.quartzite.scheduler/currently-executing-job?` Returns true there is a running job for a given key
 
 
 ## Changes between Quartzite 1.0.0 and 1.1.0
