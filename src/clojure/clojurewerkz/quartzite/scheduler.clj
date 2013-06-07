@@ -236,7 +236,7 @@
 (defn currently-executing-job?
   "Returns true if there is currently executing job for the given key"
   [key]
-  (if (seq (get-currently-executing-jobs key)) true false))
+  (boolean (seq (get-currently-executing-jobs key))))
 
 (defn get-trigger-keys
   "Returns a set of keys that match the given group matcher. Commonly used with the functions in the clojurewerkz.quartzite.matchers.*
