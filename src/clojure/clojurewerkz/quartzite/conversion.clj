@@ -21,7 +21,7 @@
 (extend-protocol JobDataMapConversion
   IPersistentMap
   (to-job-data [^clojure.lang.IPersistentMap input]
-    (JobDataMap. ^Map (wlk/stringify-keys input)))
+    (JobDataMap. (wlk/stringify-keys input)))
 
 
   JobDataMap
