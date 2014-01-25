@@ -1,7 +1,13 @@
 ## Changes between Quartzite 1.1.0 and 1.2.0
 
-* `clojurewerkz.quartzite.scheduler/get-currently-executing-jobs` Returns a set of currently executing jobs
-* `clojurewerkz.quartzite.scheduler/currently-executing-job?` Returns true there is a running job for a given key
+### clj-time upgraded to 0.6.0
+
+[clj-time](https://github.com/seancorfield/clj-time) dependency has been upgraded to version 0.6.0.
+
+### New Functions
+
+* `clojurewerkz.quartzite.scheduler/get-currently-executing-jobs` returns a set of currently executing jobs.
+* `clojurewerkz.quartzite.scheduler/currently-executing-job?` returns true there is a running job for a given key.
 
 
 ## Changes between Quartzite 1.0.0 and 1.1.0
