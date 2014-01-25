@@ -31,14 +31,14 @@ recommended.
 
 With Leiningen:
 
-    [clojurewerkz/quartzite "1.1.0"]
+    [clojurewerkz/quartzite "1.2.0"]
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
       <artifactId>quartzite</artifactId>
-      <version>1.1.0</version>
+      <version>1.2.0</version>
     </dependency>
 
 
