@@ -3,7 +3,7 @@
   (:import [org.quartz Trigger TriggerBuilder TriggerKey ScheduleBuilder]
            org.quartz.utils.Key
            java.util.Date)
-  (:use    [clojurewerkz.quartzite.conversion :only [to-job-data to-date]]))
+  (:require    [clojurewerkz.quartzite.conversion :refer [to-job-data to-date]]))
 
 
 ;;
