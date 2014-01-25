@@ -1,10 +1,10 @@
 (ns clojurewerkz.quartzite.test.querying-test
-  (:use clojure.test
-        clojurewerkz.quartzite.test.helper)
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
-            [clojurewerkz.quartzite.schedule.calendar-interval :as calin]))
+            [clojurewerkz.quartzite.schedule.calendar-interval :as calin]
+            [clojure.test :refer :all]
+            [clojurewerkz.quartzite.test.helper :refer :all]))
 
 (wrap-fixtures)
 
