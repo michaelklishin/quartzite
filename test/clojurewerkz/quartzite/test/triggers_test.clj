@@ -1,9 +1,10 @@
 (ns clojurewerkz.quartzite.test.triggers-test
   (:refer-clojure :exclude [key])
-  (:use [clojure.test]
-        [clojurewerkz.quartzite triggers conversion]
-        [clj-time.core :only [now minus plus days hours minutes]])
-  (:require [clojurewerkz.quartzite.jobs :as jobs])
+  (:require [clojurewerkz.quartzite.jobs :as jobs]
+            [clojure.test :refer :all]
+            [clojurewerkz.quartzite.conversion :refer :all]
+            [clojurewerkz.quartzite.triggers :refer :all]
+            [clj-time.core :refer [now minus plus days hours minutes]])
   (:import [java.util Date]
            [org.joda.time DateTime]))
 
