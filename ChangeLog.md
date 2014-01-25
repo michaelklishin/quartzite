@@ -1,5 +1,10 @@
 ## Changes between Quartzite 1.1.0 and 1.2.0
 
+### Clojure 1.3 is No Longer Supported
+
+Quartzite requires Clojure 1.4+ as of this version.
+
+
 ### clj-time upgraded to 0.6.0
 
 [clj-time](https://github.com/seancorfield/clj-time) dependency has been upgraded to version 0.6.0.
