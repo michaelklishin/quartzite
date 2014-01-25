@@ -1,7 +1,7 @@
 (ns clojurewerkz.quartzite.test.date-time-test
-  (:use clojurewerkz.quartzite.date-time
-        clojure.test
-        [clj-time.core :only [now interval minus plus years months weeks days hours minutes from-now after? within? ago date-time]])
+  (:require [clojurewerkz.quartzite.date-time :refer :all]
+            [clojure.test :refer :all]
+            [clj-time.core :refer [now interval minus plus years months weeks days hours minutes from-now after? within? ago date-time]])
   (:import java.util.Date
            org.joda.time.DateTime))
 
