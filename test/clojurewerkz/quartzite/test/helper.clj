@@ -1,6 +1,6 @@
 (ns clojurewerkz.quartzite.test.helper
-  (:use clojure.test)
-  (:require [clojurewerkz.quartzite.scheduler :as sched]))
+  (:require [clojurewerkz.quartzite.scheduler :as sched]
+            [clojure.test :refer :all]))
 
 (defn wrap-fixtures
   []
