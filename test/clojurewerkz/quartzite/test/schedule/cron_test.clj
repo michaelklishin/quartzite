@@ -1,8 +1,8 @@
 (ns clojurewerkz.quartzite.test.schedule.cron-test
   (:refer-clojure :exclude [key])
-  (:use [clojure.test]
-        [clojurewerkz.quartzite.schedule cron]
-        [clj-time.core :only [date-time]])
+  (:require [clojure.test :refer :all]
+            [clojurewerkz.quartzite.schedule.cron :refer :all]
+            [clj-time.core :refer [date-time]])
   (:import [org.quartz CronScheduleBuilder DateBuilder]
            [org.quartz.impl.triggers CronTriggerImpl]
            [org.joda.time DateTime]
