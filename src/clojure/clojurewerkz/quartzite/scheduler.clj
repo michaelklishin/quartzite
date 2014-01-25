@@ -3,8 +3,8 @@
            org.quartz.impl.matchers.GroupMatcher
            java.util.List)
   (:require [clojurewerkz.quartzite.jobs :as j]
-            [clojurewerkz.quartzite.triggers :as t])
-  (:use clojurewerkz.quartzite.conversion))
+            [clojurewerkz.quartzite.triggers :as t]
+            [clojurewerkz.quartzite.conversion :refer :all]))
 
 ;;
 ;; Implementation
