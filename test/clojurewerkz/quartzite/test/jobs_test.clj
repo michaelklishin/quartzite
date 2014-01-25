@@ -1,7 +1,8 @@
 (ns clojurewerkz.quartzite.test.jobs-test
   (:refer-clojure :exclude [key])
-  (:use [clojure.test]
-        [clojurewerkz.quartzite jobs conversion])
+  (:require [clojure.test :refer :all]
+            [clojurewerkz.quartzite.jobs :refer :all]
+            [clojurewerkz.quartzite.conversion :refer :all])
   (:import [org.quartz JobDataMap]))
 
 
