@@ -1,5 +1,5 @@
 (ns clojurewerkz.quartzite.date-time
-  (:use [clj-time.core :only [date-time now interval minus plus years months weeks days hours minutes from-now after? within? ago]])
+  (:require [clj-time.core :refer [date-time now interval minus plus years months weeks days hours minutes from-now after? within? ago]])
   (:import [org.joda.time DateTime DateMidnight MutableDateTime Period]))
 
 
