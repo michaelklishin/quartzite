@@ -1,8 +1,8 @@
 (ns clojurewerkz.quartzite.test.matchers-test
-  (:use clojure.test
-        clojurewerkz.quartzite.matchers)
   (:require [clojurewerkz.quartzite.jobs :as j]
-            [clojurewerkz.quartzite.triggers :as t]))
+            [clojurewerkz.quartzite.triggers :as t]
+            [clojure.test :refer :all]
+            [clojurewerkz.quartzite.matchers :refer :all]))
 
 
 (deftest test-group-matcher-factory-functions
