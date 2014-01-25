@@ -1,7 +1,7 @@
 (ns clojurewerkz.quartzite.test.schedule.daily-interval-test
   (:refer-clojure :exclude [key])
-  (:use [clojure.test]
-        [clojurewerkz.quartzite.schedule daily-interval])
+  (:require [clojure.test :refer :all]
+            [clojurewerkz.quartzite.schedule.daily-interval :refer :all])
   (:import [org.quartz DateBuilder DateBuilder$IntervalUnit SimpleTrigger]
            [org.quartz.impl.triggers DailyTimeIntervalTriggerImpl]
            [java.util TreeSet]))
