@@ -3,7 +3,7 @@
   (:import [org.quartz Job JobDetail JobBuilder JobKey JobExecutionContext JobDataMap]
            [org.quartz.utils Key]
            [clojure.lang IPersistentMap])
-  (:use    [clojurewerkz.quartzite.conversion :only [to-job-data]]))
+  (:require    [clojurewerkz.quartzite.conversion :refer [to-job-data]]))
 
 
 ;;
