@@ -1,14 +1,14 @@
 (ns clojurewerkz.quartzite.test.execution-test
-  (:use clojure.test
-        clojurewerkz.quartzite.conversion
-        clojurewerkz.quartzite.test.helper
-        [clj-time.core :only [now secs from-now]])
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.matchers  :as m]
             [clojurewerkz.quartzite.schedule.simple :as s]
-            [clojurewerkz.quartzite.schedule.calendar-interval :as calin])
+            [clojurewerkz.quartzite.schedule.calendar-interval :as calin]
+            [clojure.test :refer :all]
+            [clojurewerkz.quartzite.conversion :refer :all]
+            [clojurewerkz.quartzite.test.helper :refer :all]
+            [clj-time.core :refer [now secs from-now]])
   (:import java.util.concurrent.CountDownLatch
            org.quartz.impl.matchers.GroupMatcher))
 
