@@ -1,7 +1,7 @@
 (ns clojurewerkz.quartzite.test.schedule.simple-test
   (:refer-clojure :exclude [key])
-  (:use [clojure.test]
-        [clojurewerkz.quartzite.schedule simple])
+  (:require [clojure.test :refer :all]
+            [clojurewerkz.quartzite.schedule.simple :refer :all])
   (:import [org.quartz DateBuilder SimpleTrigger Trigger]
            [org.quartz.impl.triggers SimpleTriggerImpl]))
 
