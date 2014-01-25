@@ -1,7 +1,7 @@
 (ns clojurewerkz.quartzite.test.schedule.calendar-interval-test
   (:refer-clojure :exclude [key])
-  (:use [clojure.test]
-        [clojurewerkz.quartzite.schedule calendar-interval])
+  (:require [clojure.test :refer :all]
+            [clojurewerkz.quartzite.schedule.calendar-interval :refer :all])
   (:import [org.quartz DateBuilder DateBuilder$IntervalUnit]
            [org.quartz.impl.triggers CalendarIntervalTriggerImpl]))
 
