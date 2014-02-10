@@ -7,9 +7,9 @@
 ;; the terms of this license.
 ;; You must not remove this notice, or any other, from this software.
 
-(ns ^{:doc "Contains factory functions that produce group matchers. Group matchers are used to retrieve
-            triggers and jobs from the scheduler en masse."
-      :author "Michael S. Klishin"} clojurewerkz.quartzite.matchers
+(ns clojurewerkz.quartzite.matchers
+  "Contains factory functions that produce group matchers.
+   Group matchers are used to retrieve triggers and jobs from the scheduler en masse."
   (:import org.quartz.impl.matchers.GroupMatcher
            org.quartz.utils.Key))
 
