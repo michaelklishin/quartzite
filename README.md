@@ -89,7 +89,7 @@ tests pass, submit a pull request on Github.
 
 ## License
 
-Copyright (C) 2011-2012 Michael S. Klishin
+Copyright (C) 2011-2014 Michael S. Klishin
 
 Distributed under the Eclipse Public License, the same as Clojure.
 
