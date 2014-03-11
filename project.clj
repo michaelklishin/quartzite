@@ -11,7 +11,7 @@
                    :focus   :focus
                    :default (constantly true)}
   :profiles {:1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}
-             :1.6 {:dependencies [[org.clojure/clojure "1.6.0-rc1"]]}
+             :1.6 {:dependencies [[org.clojure/clojure "1.6.0-RC1"]]}
              :master {:dependencies [[org.clojure/clojure "1.6.0-master-SNAPSHOT"]]}
              :dev {:resource-paths ["test/resources"]
                    :dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
