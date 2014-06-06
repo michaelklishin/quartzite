@@ -1,6 +1,6 @@
 (defproject clojurewerkz/quartzite "1.3.0-SNAPSHOT"
   :description "Quarzite is a thin Clojure layer on top the Quartz Scheduler"
-  :min-lein-version "2.0.0"
+  :min-lein-version "2.3.0"
   :license {:name "Eclipse Public License"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.quartz-scheduler/quartz "2.1.7"]
