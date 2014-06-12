@@ -8,7 +8,7 @@
             [clojure.test :refer :all]
             [clojurewerkz.quartzite.conversion :refer :all]
             [clojurewerkz.quartzite.test.helper :refer :all]
-            [clj-time.core :refer [now secs from-now]])
+            [clj-time.core :refer [now seconds from-now]])
   (:import java.util.concurrent.CountDownLatch
            org.quartz.impl.matchers.GroupMatcher))
 
@@ -246,7 +246,7 @@
                  (j/of-type JobG)
                  (j/with-identity "clojurewerkz.quartzite.test.execution-test.job7" "tests"))
         trigger  (t/build
-                  (t/start-at (-> 2 secs from-now))
+                  (t/start-at (-> 2 seconds from-now))
                   (t/with-schedule (calin/schedule
                                     (calin/with-interval-in-seconds 2))))]
     (is (sched/schedule job trigger))

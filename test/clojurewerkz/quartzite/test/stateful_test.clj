@@ -9,7 +9,7 @@
             [clojure.test :refer :all]
             [clojurewerkz.quartzite.conversion :refer :all]
             [clojurewerkz.quartzite.test.helper :refer :all]
-            [clj-time.core :refer [now secs from-now]])
+            [clj-time.core :refer [now from-now]])
   (:import java.util.concurrent.CountDownLatch
            org.quartz.impl.matchers.GroupMatcher))
 
