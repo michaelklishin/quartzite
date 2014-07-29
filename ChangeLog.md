@@ -1,5 +1,9 @@
 ## Changes Between Quartzite 1.2.0 and 1.3.0
 
+### Clojure 1.6 by Default
+
+The library now depends on Clojure 1.6.
+
 ### clj-time upgraded to 0.7.0
 
 [clj-time](https://github.com/clj-time/clj-time) dependency has been upgraded to version 0.7.0.
