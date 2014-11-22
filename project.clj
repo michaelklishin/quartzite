@@ -11,11 +11,12 @@
                    :focus   :focus
                    :default (constantly true)}
   :profiles {:1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}
+             :1.7 {:dependencies [[org.clojure/clojure "1.7.0-alpha4"]]}
              :master {:dependencies [[org.clojure/clojure "1.7.0-master-SNAPSHOT"]]}
              :dev {:resource-paths ["test/resources"]
                    :dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
                                   [org.slf4j/slf4j-log4j12   "1.6.4"]]}}
-  :aliases {"all" ["with-profile" "dev:dev,1.5:dev,master"]}
+  :aliases {"all" ["with-profile" "dev:dev,1.5:dev,1.7:dev,master"]}
   :repositories {"sonatype" {:url "http://oss.sonatype.org/content/repositories/releases"
                              :snapshots false
                              :releases {:checksum :fail :update :always}}
