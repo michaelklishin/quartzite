@@ -3,10 +3,7 @@
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.calendar-interval :as calin]
-            [clojure.test :refer :all]
-            [clojurewerkz.quartzite.test.helper :refer :all]))
-
-(wrap-fixtures)
+            [clojure.test :refer :all]))
 
 ;;
 ;; Group Names operations
@@ -33,33 +30,37 @@
                      (calin/with-interval-in-hours 4)))))
 
 (deftest test-add-job
-  (let [job-id "job-in-test-add-job"
+  (let [s      (-> (sched/initialize) sched/start)
+        job-id "job-in-test-add-job"
         job-group "test-job1"
         job1 (make-durable-no-op-job job-id job-group)
         jk (j/key job-id job-group)]
 
-    (sched/add-job job1)
+    (sched/add-job s job1)
 
-    (is (.equals (sched/get-job jk) job1))
-    (is (zero? (count (sched/get-triggers-of-job jk))))))
+    (is (.equals (sched/get-job s jk) job1))
+    (is (zero? (count (sched/get-triggers-of-job s jk))))
+    (sched/shutdown s)))
 
 (deftest test-add-trigger
-  (let [job-id "job-in-test-add-job"
+  (let [s      (-> (sched/initialize) sched/start)
+        job-id "job-in-test-add-job"
         job-group "test-job1"
         job1 (make-durable-no-op-job job-id job-group)
         jk (j/key job-id job-group)]
 
-    (sched/add-job job1)
+    (sched/add-job s job1)
 
-    (is (.equals (sched/get-job jk) job1))
-    (is (zero? (count (sched/get-triggers-of-job jk))))
+    (is (.equals (sched/get-job s jk) job1))
+    (is (zero? (count (sched/get-triggers-of-job s jk))))
 
     (let [trig-id "trigger-in-test-add-trigger"
           trig-group "test-trigger1"
           trig1 (make-no-op-trigger job1 trig-id trig-group)]
 
-      (sched/add-trigger trig1)
+      (sched/add-trigger s trig1)
 
-      (let [triggers (sched/get-triggers-of-job jk)]
+      (let [triggers (sched/get-triggers-of-job s jk)]
         (is (= 1 (count triggers)))
-        (is (.equals (first triggers) trig1))))))
+        (is (.equals (first triggers) trig1)))
+      (sched/shutdown s))))

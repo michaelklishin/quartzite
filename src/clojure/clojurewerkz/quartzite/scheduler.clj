@@ -76,7 +76,7 @@
      (.addJob ^Scheduler scheduler job-detail replace))
   
   ([^Scheduler scheduler ^JobDetail job-detail]
-     (add-job job-detail false)))
+     (add-job scheduler job-detail false)))
 
 (defn add-trigger
   "Adds given trigger to the scheduled job with which the trigger has been associated"
