@@ -22,8 +22,8 @@
 (defn replace!
   "Replaces the job data of the current context execution for the map m, so it will be persisted. Returns m."
   [^JobExecutionContext ctx m]
-  (.. ctx (getJobDetail) (getJobDataMap) (clear))
-  (.. ctx (getJobDetail) (getJobDataMap) (putAll m))
+  (.. ctx getJobDetail getJobDataMap clear)
+  (.. ctx getJobDetail getJobDataMap (putAll m))
   m)
 
 (defn get-job-detail-data

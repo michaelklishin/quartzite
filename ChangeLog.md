@@ -1,3 +1,39 @@
+## Changes Between Quartzite 1.3.0 and 2.0.0
+
+### Scheduler as Explicit Arguments
+
+Following our [commitment to make our projects rely less on dynamic vars](http://blog.clojurewerkz.org/blog/2014/04/26/major-breaking-public-api-changes-coming-in-our-projects/) we
+have changed `clojurewerkz.quartzite.scheduler` function to take an explicit
+scheduler argument.
+
+So, in 1.3 releases, you would do:
+
+``` clojure
+(require '[clojurewerkz.quartzite.scheduler :as qs])
+
+(qs/initialize)
+(qs/start)
+(qs/schedule job-detail trigger)
+(qs/shutdown)
+```
+
+and in 2.0 release, the same code would look like so:
+
+``` clojure
+(require '[clojurewerkz.quartzite.scheduler :as qs])
+
+(let [s (-> (qs/initialize) qs/start)]
+  (qs/schedule s job-detail trigger)
+  (qs/shutdown s))
+```
+
+
+### Clojure 1.4 and 1.5 are No Longer Supported
+
+The library no longer supports Clojure 1.4 and 1.5 as of this version.
+
+
+
 ## Changes Between Quartzite 1.2.0 and 1.3.0
 
 ### Clojure 1.6 by Default
