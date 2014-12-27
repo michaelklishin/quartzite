@@ -19,22 +19,23 @@
 ;; API
 ;;
 
-(defn initialize
+(defn ^Scheduler initialize
   "Initializes a scheduler."
   []
   (org.quartz.impl.StdSchedulerFactory/getDefaultScheduler))
 
-(defn start
+(defn ^Scheduler start
   "Starts Quartzite's scheduler. Newly initialized scheduler is not active (in standby mode),
    this function starts it"
   [^Scheduler scheduler]
   (doto scheduler
     .start))
 
-(defn start-delayed
+(defn ^Scheduler start-delayed
   "Starts Quartzite's scheduler after a delay in seconds"
   [^Scheduler scheduler ^long seconds]
-  (.startDelayed ^Scheduler scheduler seconds))
+  (doto scheduler
+    (.startDelayed seconds)))
 
 (defn standby
   "Puts scheduler in standby mode. When in scheduler is standby mode, no triggers will fire"
