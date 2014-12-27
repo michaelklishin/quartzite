@@ -15,8 +15,11 @@ Quarzite is a powerful Clojure scheduling library built on top the [Quartz Sched
 
 ## Project Maturity
 
-Quartzite is past `1.0` and has been in use for over a year. We consider it to be stable
+Quartzite is past `2.0`. We consider it to be stable
 and reasonably mature. Quartz Scheduler is a very mature project.
+
+API changes generally follow semantic versioning and are driven by the user
+feedback.
 
 
 ## Supported Clojure Versions
@@ -31,14 +34,14 @@ recommended.
 
 With Leiningen:
 
-    [clojurewerkz/quartzite "1.3.0"]
+    [clojurewerkz/quartzite "2.0.0"]
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
       <artifactId>quartzite</artifactId>
-      <version>1.3.0</version>
+      <version>2.0.0</version>
     </dependency>
 
 
