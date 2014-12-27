@@ -27,6 +27,13 @@ and in 2.0 release, the same code would look like so:
   (qs/shutdown s))
 ```
 
+### quartzite.date-time is Gone
+
+`clojurewerkz.quartzite.date-time` was removed as all of the functions in that
+namespace have been contributed to `clj-time` a while ago, and some provide more
+correct or extensible functionality.
+
+Simply use `clj-time` counterparts when upgrading.
 
 ### Clojure 1.4 and 1.5 are No Longer Supported
 
