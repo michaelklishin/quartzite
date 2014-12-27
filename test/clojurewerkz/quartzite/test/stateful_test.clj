@@ -1,4 +1,5 @@
 (ns clojurewerkz.quartzite.test.stateful-test
+  (:refer-clojure :exclude [await])
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
             [clojurewerkz.quartzite.triggers  :as t]
