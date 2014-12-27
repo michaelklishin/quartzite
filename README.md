@@ -24,7 +24,7 @@ feedback.
 
 ## Supported Clojure Versions
 
-Quartzite is built from the ground up for Clojure 1.3 and up. The most recent release is always
+Quartzite requires Clojure 1.6 or later. The most recent release is always
 recommended.
 
 
