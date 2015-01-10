@@ -9,13 +9,24 @@
 
 (ns clojurewerkz.quartzite.conversion
   (:refer-clojure :exclude [key])
-  (:require [clojure.walk :as wlk])
   (:import [org.quartz JobDataMap JobExecutionContext]
            org.quartz.utils.Key
            [org.quartz TriggerKey JobKey]
            clojure.lang.IPersistentMap
            [org.quartz JobDetail Trigger]))
 
+;;
+;; Implementation
+;;
+
+(defn- convert-keys-to-strings
+  "Converts keys of a map to strings. Doesn't modify nested maps"
+  [map]
+  (->> (for [[k v] map]
+         (if (keyword? k)
+           [(name k) v]
+           [(str k) v]))
+       (into {})))
 
 ;;
 ;; API
@@ -30,12 +41,12 @@
 (extend-protocol JobDataMapConversion
   IPersistentMap
   (to-job-data [^clojure.lang.IPersistentMap input]
-    (JobDataMap. (wlk/stringify-keys input)))
+    (JobDataMap. (convert-keys-to-strings input)))
 
 
   JobDataMap
   (from-job-data [^JobDataMap input]
-    (wlk/stringify-keys (into {} input)))
+    (into {} input))
 
   JobExecutionContext
   (from-job-data [^JobExecutionContext input]
