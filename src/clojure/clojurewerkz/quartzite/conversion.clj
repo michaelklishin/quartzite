@@ -46,7 +46,7 @@
 
   JobDataMap
   (from-job-data [^JobDataMap input]
-    (into {} input))
+    (into {} (convert-keys-to-strings input)))
 
   JobExecutionContext
   (from-job-data [^JobExecutionContext input]
