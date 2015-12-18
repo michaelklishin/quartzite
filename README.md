@@ -32,9 +32,21 @@ recommended.
 
 ### The Most Recent Release
 
+Quartzite artifacts are [released to Clojars](https://clojars.org/clojurewerkz/quartzite). If you are using Maven, add the following repository
+definition to your `pom.xml`:
+
+```xml
+<repository>
+  <id>clojars.org</id>
+  <url>http://clojars.org/repo</url>
+</repository>
+```
+
+### The Most Recent Version
+
 With Leiningen:
 
-    [clojurewerkz/quartzite "2.0.0"]
+[![Clojars Project](http://clojars.org/clojurewerkz/quartzite/latest-version.svg)](http://clojars.org/clojurewerkz/quartzite)
 
 With Maven:
 
