@@ -1,4 +1,4 @@
-# Quarzite, a thin Clojure layer on top the Quartz Scheduler
+# Quartzite, a thin Clojure layer on top the Quartz Scheduler
 
 Quarzite is a powerful Clojure scheduling library built on top the [Quartz Scheduler](http://quartz-scheduler.org/).
 
