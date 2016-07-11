@@ -8,3 +8,8 @@ jdk:
 branches:
   only:
     - master
+
+addons:
+# Fix OpenJDK builds
+# https://github.com/travis-ci/travis-ci/issues/5227
+  hostname: localhost
