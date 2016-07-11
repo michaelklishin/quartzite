@@ -242,7 +242,7 @@
    Commonly used with the functions in the clojurewerkz.quartzite.matchers.* namespace."
   [^Scheduler scheduler ^GroupMatcher gm]
   (->> (get-job-keys scheduler gm)
-       (get-triggers scheduler)))
+       (get-jobs scheduler)))
 
 
 

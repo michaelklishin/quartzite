@@ -1,6 +1,7 @@
 (ns clojurewerkz.quartzite.test.querying-test
   (:require [clojurewerkz.quartzite.scheduler :as sched]
             [clojurewerkz.quartzite.jobs      :as j]
+            [clojurewerkz.quartzite.matchers  :as matchers]
             [clojurewerkz.quartzite.triggers  :as t]
             [clojurewerkz.quartzite.schedule.calendar-interval :as calin]
             [clojure.test :refer :all]))
@@ -98,3 +99,15 @@
     (is (= 1 (count (sched/get-currently-executing-jobs s "long-job-1"))))
     (is (sched/currently-executing-job? s "long-job-1"))
     (sched/shutdown s)))
+
+(deftest test-get-matching-jobs
+  (let [s    (-> (sched/initialize) sched/start)
+        job-id "job-in-test-get-matching-job1"
+        job-group "test-job1"
+        job1 (make-no-op-job job-id job-group)
+        tr (make-long-running-job-trigger job1 "trig-id")]
+
+    (sched/schedule s job1 tr)
+
+    (let [jobs (sched/get-matching-jobs s (matchers/group-equals job-group))]
+      (is (= jobs [job1])))))
