@@ -68,8 +68,8 @@
         ^DateTime d4     (date-time 2025 3  31  15)
         ^DateTime d5     (date-time 2025 4  30  15)
         ^DateTime d6     (date-time 2025 4  28  15)
-        ^DateTime d7     (date-time 2016 2  29  15)
-        ^DateTime d8     (date-time 2017 2  28  15)
+        ^DateTime d7     (date-time 2024 2  29  15)
+        ^DateTime d8     (date-time 2029 2  28  15)
         ^CronTriggerImpl sched (schedule
                                 (cron-schedule "0 0 15 L * ?")
                                  (finalize))]
