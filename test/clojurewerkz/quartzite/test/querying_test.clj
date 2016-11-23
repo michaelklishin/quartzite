@@ -83,7 +83,8 @@
     (let [jk (j/key job-id job-group)
           triggers (sched/get-triggers-of-job s jk)]
       (is (= 1 (count triggers)))
-      (is (.equals (first triggers) tk1)))))
+      (is (.equals (first triggers) tk1)))
+    (sched/shutdown s)))
 
 (deftest test-get-executing-jobs
   (let [s    (-> (sched/initialize) sched/start)
@@ -110,4 +111,5 @@
     (sched/schedule s job1 tr)
 
     (let [jobs (sched/get-matching-jobs s (matchers/group-equals job-group))]
-      (is (= jobs [job1])))))
+      (is (= jobs [job1])))
+    (sched/shutdown s)))
