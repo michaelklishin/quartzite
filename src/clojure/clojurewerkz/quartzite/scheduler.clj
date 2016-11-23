@@ -187,7 +187,7 @@
   ([^Scheduler scheduler key]
      (.getJobDetail ^Scheduler scheduler (to-job-key key)))
   ([^Scheduler scheduler ^String group ^String key]
-     (.getJobDetail ^Scheduler scheduler (j/key group key))))
+     (.getJobDetail ^Scheduler scheduler (j/key key group))))
 
 (defn get-triggers-of-job
   "Returns a set of Trigger instances for the given collection of keys."
