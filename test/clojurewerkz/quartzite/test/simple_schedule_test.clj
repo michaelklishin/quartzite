@@ -39,6 +39,7 @@
     (sched/add-job s job1)
 
     (is (.equals (sched/get-job s jk) job1))
+    (is (.equals job1 (sched/get-job s job-group job-id)))
     (is (zero? (count (sched/get-triggers-of-job s jk))))
     (sched/shutdown s)))
 
