@@ -180,7 +180,7 @@
   ([^Scheduler scheduler key]
      (.getTrigger ^Scheduler scheduler key))
   ([^Scheduler scheduler ^String group ^String key]
-     (.getTrigger ^Scheduler scheduler (t/key group key))))
+     (.getTrigger ^Scheduler scheduler (t/key key group))))
 
 (defn get-job
   "Returns a JobDetail instance for the given key."
