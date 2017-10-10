@@ -1,3 +1,34 @@
+## Changes Between Quartzite 2.0.0 and 2.1.0
+
+### `get-job` and `get-trigger` Fixes
+
+`clojurewerkz.quartzite.scheduler/get-job` and `/get-trigger` now use correct
+order of arguments for key group and key.
+
+Contributed by songsd and Ryan Fowler.
+
+### `get-matching-jobs` Fixes
+
+`clojurewerkz.quartzite.scheduler/get-matching-jobs` now returns jobs (as advertised).
+
+Contributed by Przemysław Wojnowski.
+
+### Stringified Job Keys
+
+When job maps are converted to `JobDataDetails` used by Quartz, all keys are
+now stringified and nested maps are ignored.
+
+Contributed by Nikita Beloglazov.
+
+### clj-time Upgrade
+
+The project now depends on clj-time `0.14.0`.
+
+### Test Suite Improvements
+
+Contributed by Nikita Beloglazov, Przemysław Wojnowski, Ryan Fowler.
+
+
 ## Changes Between Quartzite 1.3.0 and 2.0.0
 
 ### Scheduler as Explicit Arguments
