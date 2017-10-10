@@ -104,10 +104,6 @@ tests pass, submit a pull request on Github.
 
 ## License
 
-Copyright (C) 2011-2016 Michael S. Klishin
+Copyright (C) 2011-2017 Michael S. Klishin, Alex Petrov, the ClojureWerkz team and contributors.
 
 Distributed under the Eclipse Public License, the same as Clojure.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/michaelklishin/quartzite/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
