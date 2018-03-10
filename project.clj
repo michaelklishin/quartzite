@@ -2,16 +2,17 @@
   :description "Quarzite is a thin Clojure layer on top the Quartz Scheduler"
   :min-lein-version "2.5.1"
   :license {:name "Eclipse Public License"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.quartz-scheduler/quartz "2.1.7"]
-                 [clj-time "0.14.0"]]
+                 [clj-time "0.14.2"]]
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :test-selectors {:all     (constantly true)
                    :focus   :focus
                    :default (constantly true)}
   :profiles {:1.7 {:dependencies [[org.clojure/clojure "1.7.0"]]}
-             :master {:dependencies [[org.clojure/clojure "1.9.0-master-SNAPSHOT"]]}
+             :1.8 {:dependencies [[org.clojure/clojure "1.8.0"]]}
+             :master {:dependencies [[org.clojure/clojure "1.10.0-master-SNAPSHOT"]]}
              :dev {:resource-paths ["test/resources"]
                    :dependencies [[org.clojure/tools.logging "0.2.3" :exclusions [org.clojure/clojure]]
                                   [org.slf4j/slf4j-log4j12   "1.6.4"]]}}
