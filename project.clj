@@ -3,7 +3,7 @@
   :min-lein-version "2.5.1"
   :license {:name "Eclipse Public License"}
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.quartz-scheduler/quartz "2.1.7"]
+                 [org.quartz-scheduler/quartz "2.3.1"]
                  [clj-time "0.14.2"]]
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
