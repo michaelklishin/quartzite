@@ -4,12 +4,12 @@ Quartzite documentation is organized as a number of guides, covering all kinds o
 
 We recommend that you read these guides, if possible, in this order:
 
-###  [Getting started](./getting_started.html)
+###  [Getting started](./getting_started.md)
 
 An overview of Quartzite with a quick tutorial that helps you to get started with it. It should take about
 10 minutes to read and study the provided code examples
 
-### [Scheduler initialization](./scheduler.html)
+### [Scheduler initialization](./scheduler.md)
 
 This guide covers:
 
@@ -19,7 +19,7 @@ This guide covers:
  * Using multiple schedulers with Quartzite
 
 
-### [Jobs](./jobs.html)
+### [Jobs](./jobs.md)
 
 This guide covers:
 
@@ -31,7 +31,7 @@ This guide covers:
  * How to delete jobs
 
 
-### [Triggers and schedules](./triggers.html)
+### [Triggers and schedules](./triggers.md)
 
 This guide covers:
 
@@ -43,7 +43,7 @@ This guide covers:
  * How to delete triggers
 
 
-### [Using Durable Stores For Scheduler State](./durable_quartz_stores.html)
+### [Using Durable Stores For Scheduler State](./durable_quartz_stores.md)
 
 This guide covers:
 
