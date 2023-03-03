@@ -6,7 +6,6 @@ pom.xml*
 .lein-deps-sum
 TAGS
 checkouts/*
-doc/*
 deploy.docs.sh
 target/*
 .nrepl*
