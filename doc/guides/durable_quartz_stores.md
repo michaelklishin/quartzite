@@ -1,9 +1,4 @@
----
-title: "Using durable Quartz stores with Quartzite"
-layout: article
----
-
-## About this guide
+# Using durable Quartz stores with Quartzite
 
 This guide covers:
 

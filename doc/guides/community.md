@@ -1,8 +1,4 @@
----
-title: "Quartzite: Community"
-layout: article
----
-
+# Quartzite: Community
 ## Mailing List
 
 [Quartzite has a mailing list](https://groups.google.com/forum/#!forum/clojure-quartz). Feel free to join it and ask any questions you may have.

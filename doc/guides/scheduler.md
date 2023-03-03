@@ -1,9 +1,4 @@
----
-title: "Quartzite, a powerful Clojure scheduling library: schedulers"
-layout: article
----
-
-## About this guide
+# Quartzite, a powerful Clojure scheduling library: schedulers
 
 This guide covers:
 

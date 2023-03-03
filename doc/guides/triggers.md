@@ -1,9 +1,4 @@
----
-title: "Quartzite, a powerful Clojure scheduling library: defining triggers and schedules"
-layout: article
----
-
-## About this guide
+# Quartzite, a powerful Clojure scheduling library: defining triggers and schedules
 
 This guide covers:
 

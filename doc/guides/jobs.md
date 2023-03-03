@@ -1,9 +1,4 @@
----
-title: "Quartzite, a powerful Clojure scheduling library: defining jobs"
-layout: article
----
-
-## About this guide
+# Quartzite, a powerful Clojure scheduling library: defining jobs
 
 This guide covers:
 

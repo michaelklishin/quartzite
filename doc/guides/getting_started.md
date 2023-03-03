@@ -1,9 +1,4 @@
----
-title: "Getting Started"
-layout: article
----
-
-## About this guide
+# Getting Started with Quartzite
 
 This guide combines an overview of Quartzite with a quick tutorial that helps you to get started with it.
 It should take about 10 minutes to read and study the provided code examples. This guide covers:

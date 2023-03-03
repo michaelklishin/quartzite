@@ -1,9 +1,4 @@
----
-title: "Quartzite, a powerful Clojure scheduling library: all documentation guides"
-layout: article
----
-
-## Guide list
+# Guide list
 
 [Quartzite documentation](https://github.com/clojurewerkz/quartzite.docs) is organized as a number of guides, covering all kinds of topics.
 
