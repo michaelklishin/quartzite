@@ -60,8 +60,8 @@ With Maven:
 
 ## Getting Started, Documentation
 
-Please refer to the [Getting Started with Clojure and Quartz](http://clojurequartz.info/articles/getting_started.html).
-[Quartzite documentation guides](http://clojurequartz.info/) are not fully complete but cover most of the functionality.
+Please refer to the [Getting Started with Clojure and Quartz](./doc/guides/getting_started.md).
+[Quartzite documentation guides](./doc/guides) are not fully complete but cover most of the functionality.
 
 Quality [Clojure documentation](http://clojure-doc.org) is available elsewhere.
 
@@ -77,8 +77,7 @@ To subscribe for announcements of releases, important changes and so on, please 
 
 ## Quartzite Is a ClojureWerkz Project
 
-Quartzite is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org), together with
-[Monger](http://clojuremongodb.info), [Welle](http://clojureriak.info), [Neocons](https://github.com/michaelklishin/neocons), [Langohr](https://github.com/michaelklishin/langohr), [Elastisch](https://github.com/clojurewerkz/elastisch) and several others.
+Quartzite is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org).
 
 
 
@@ -104,6 +103,6 @@ tests pass, submit a pull request on Github.
 
 ## License
 
-Copyright (C) 2011-2017 Michael S. Klishin, Alex Petrov, the ClojureWerkz team and contributors.
+Copyright (C) 2011-2023 Michael S. Klishin, Alex Petrov, the ClojureWerkz team and contributors.
 
 Distributed under the Eclipse Public License, the same as Clojure.
