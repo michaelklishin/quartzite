@@ -32,13 +32,15 @@
 
 (deftest test-job-builder-dsl-example1
   (let [job (build (with-identity    "basic.job1" "basic.group1")
-                   (with-description "A description"))]
+                   (with-description "A description")
+                   (of-type AJob))]
     (is (= (key "basic.job1" "basic.group1") (.getKey job)))))
 
 
 (deftest test-job-builder-dsl-example2
   (let [job (build (with-identity    "basic.job2" "basic.group2")
-                   (with-description "A description"))]
+                   (with-description "A description")
+                   (of-type AJob))]
     (is (= "A description" (.getDescription job)))))
 
 
@@ -46,24 +48,27 @@
   (let [job (build (with-identity    "basic.job3" "basic.group3")
                    (with-description "A description")
                    (of-type AJob))]
-   (.getJobClass job)))
+    (.getJobClass job)))
 
 (deftest test-job-builder-dsl-example4
   (let [job (build (with-identity    "basic.job4" "basic.group4")
                    (store-durably)
-                   (request-recovery))]
+                   (request-recovery)
+                   (of-type AJob))]
     (is (.requestsRecovery job))
     (is (.isDurable job))))
 
 (deftest test-job-builder-dsl-example5
   (let [jk  (key "basic.job5" "basic.group5")
         job (build (with-identity jk)
+                   (of-type AJob)
                    (store-durably))]
     (is (= jk (.getKey job)))))
 
 (deftest test-job-builder-dsl-example6
   (let [jk  (key "basic.job6")
         job (build (with-identity jk)
+                   (of-type AJob)
                    (store-durably))]
     (is (= jk (.getKey job)))))
 
