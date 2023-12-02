@@ -15,6 +15,8 @@
             [clojurewerkz.quartzite.triggers :as t]
             [clojurewerkz.quartzite.conversion :refer :all]))
 
+(set! *warn-on-reflection* true)
+
 ;;
 ;; API
 ;;
@@ -248,8 +250,8 @@
 
 (defn scheduled?
   "Checks if entity with given key already exists within the scheduler"
-  [^Scheduler scheduler key]
-  (.checkExists ^Scheduler scheduler key))
+  [^Scheduler scheduler ^JobKey key]
+  (.checkExists scheduler key))
 
 (defn all-scheduled?
   "Returns true if all provided keys (trigger or job) are scheduled"

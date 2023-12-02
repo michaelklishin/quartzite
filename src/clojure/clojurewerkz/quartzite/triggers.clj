@@ -14,6 +14,7 @@
            java.util.Date)
   (:require    [clojurewerkz.quartzite.conversion :refer [to-job-data to-date]]))
 
+(set! *warn-on-reflection* true)
 
 ;;
 ;; Implementation
@@ -80,7 +81,7 @@
 
 
 (defn for-job
-  ([^TriggerBuilder tb job]
+  ([^TriggerBuilder tb ^String job]
      (.forJob tb job))
   ([^TriggerBuilder tb ^String job ^String group]
      (.forJob tb job group)))
