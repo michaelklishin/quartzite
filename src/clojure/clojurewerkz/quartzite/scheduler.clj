@@ -250,7 +250,7 @@
 
 (defn scheduled?
   "Checks if entity with given key already exists within the scheduler"
-  [^Scheduler scheduler ^JobKey key]
+  [^Scheduler scheduler key]
   (.checkExists scheduler key))
 
 (defn all-scheduled?

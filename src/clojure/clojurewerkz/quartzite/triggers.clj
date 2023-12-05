@@ -81,9 +81,9 @@
 
 
 (defn for-job
-  ([^TriggerBuilder tb ^String job]
+  ([^TriggerBuilder tb job]
      (.forJob tb job))
-  ([^TriggerBuilder tb ^String job ^String group]
+  ([^TriggerBuilder tb job group]
      (.forJob tb job group)))
 
 
