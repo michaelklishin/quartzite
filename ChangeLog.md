@@ -1,6 +1,12 @@
 ## Changes Between Quartzite 2.1.0 and 2.2.0
 
-No changes yet.
+### Upgrades Quartz to 2.3.2
+
+To address a number of CVEs.
+
+GitHub issue: [#45](https://github.com/michaelklishin/quartzite/pull/45)
+
+Contributed by @kevin-ewing.
 
 
 ## Changes Between Quartzite 2.0.0 and 2.1.0
