@@ -1,3 +1,8 @@
+## Changes Between Quartzite 2.2.0 and 2.3.0
+
+No changes yet.
+
+
 ## Changes Between Quartzite 2.1.0 and 2.2.0
 
 ### Upgrades Quartz to 2.3.2
